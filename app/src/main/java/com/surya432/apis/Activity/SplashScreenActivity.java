@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.surya432.apis.MainActivity;
 import com.surya432.apis.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -24,14 +25,14 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void doWork() {
         try {
-            Thread.sleep(2200);
+            Thread.sleep(2100);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void startApp() {
-        Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
         startActivity(intent);
     }
 
