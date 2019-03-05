@@ -19,12 +19,12 @@ import butterknife.Optional;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private Intent intent;
-    private SessionManager sessionManager;
+    private SessionManager sessionManagerLogin;
 
     @Optional
     @OnClick(R.id.btn_login)
     public void btnLogin() {
-        sessionManager.setLogin(true, "access", "haho");
+        sessionManagerLogin.setLogin(true, "access", "haho");
         intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -40,11 +40,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkInet() {
+        sessionManagerLogin = new SessionManager(getApplicationContext());
         Log.d(TAG, "checkInet: " + NetworkManager.isNetworkAvaliable(this));
         if (NetworkManager.isNetworkAvaliable(this)) {
-            sessionManager = new SessionManager(this);
-            if (sessionManager.isLoggedIn()) {
-                Intent intent = new Intent(this, MainActivity.class);
+            if (sessionManagerLogin.isLoggedIn()) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
@@ -53,9 +53,9 @@ public class LoginActivity extends AppCompatActivity {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(
                     this);
             // Setting Dialog Title
-            alertDialog.setTitle("Koneksi Internet Tidak Tersedia. Silakan Aktifkan Paket Data Internet");
+            alertDialog.setTitle("Koneksi Internet Tidak Tersedia.");
             // Setting Dialog Message
-            alertDialog.setMessage("Coba lagi?");
+            alertDialog.setMessage("Silakan Aktifkan Paket Data Internet. Coba lagi?");
             // Setting Icon to Dialog
             alertDialog.setIcon(R.drawable.ic_sinyaloffs);
             // Setting Positive "Yes" Button

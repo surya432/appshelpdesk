@@ -46,7 +46,8 @@
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_userslogin"
+                android:drawableLeft="@drawable/ic_icon01"
+
                 android:drawablePadding="10dp"
                 android:hint="Username"
                 android:inputType="textEmailAddress" />
@@ -71,7 +72,7 @@
                    android:id="@+id/input_password"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:drawableLeft="@drawable/ic_passwordlogin"
+                   android:drawableLeft="@drawable/ic_icon02"
                    android:drawablePadding="10dp"
                    android:hint="Password"
                    android:inputType="textPassword"/>
