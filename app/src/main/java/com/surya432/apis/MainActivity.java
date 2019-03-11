@@ -4,12 +4,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,11 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.surya432.apis.Activity.LoginActivity;
+import com.surya432.apis.Fragment.AkunFragment;
+import com.surya432.apis.Fragment.DriverFragment;
+import com.surya432.apis.Fragment.InboxFragment;
+import com.surya432.apis.Fragment.MyPlanFragment;
+import com.surya432.apis.Fragment.SalesFragment;
 import com.surya432.apis.Helpers.NetworkManager;
 import com.surya432.apis.Helpers.SessionManager;
 
@@ -25,23 +31,28 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = MainActivity.class.getSimpleName();
-
-    private String versionName = BuildConfig.VERSION_NAME;
-    private SessionManager sessionManager;
-
-    private void firstTime() {
-    }
-
     @BindView(R.id.menubar)
     ImageView menubar;
+    private String versionName = BuildConfig.VERSION_NAME;
+    private SessionManager sessionManager;
+    private SalesFragment salesFragment;
+    private MyPlanFragment nav_myPlan;
+    private InboxFragment nav_inbox;
+    private AkunFragment nav_akun;
+    private DriverFragment driverFragment;
+
+    private void firstTime() {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         menubar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void checkInetSession() {
-
         Log.d(TAG, "checkInet: " + NetworkManager.isNetworkAvaliable(this));
         if (NetworkManager.isNetworkAvaliable(this)) {
             sessionManager = new SessionManager(getApplicationContext());
@@ -63,6 +73,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
+            } else {
+                driverFragment = new DriverFragment();
+                salesFragment = new SalesFragment();
+                nav_myPlan = new MyPlanFragment();
+                nav_inbox = new InboxFragment();
+                nav_akun = new AkunFragment();
+                getRoles();
             }
         } else {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(
@@ -85,11 +102,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // Write your code here to invoke NO event
-                            dialog.cancel();
+                            //dialog.cancel();
+                            finish();
                         }
                     });
             // Showing Alert Message
             alertDialog.show();
+        }
+    }
+
+    private void getRoles() {
+        Log.d(TAG, "checkInetSession: " + sessionManager.getJob().toString());
+        if (sessionManager.getJob().equals("Sales")) {
+            replaceFragment(salesFragment);
+        } else {
+            replaceFragment(driverFragment);
         }
     }
 
@@ -125,23 +152,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return super.onOptionsItemSelected(item);
     }
-//
+
+    //
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_home) {
+            getRoles();
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_inbox) {
+            replaceFragment(nav_inbox);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_my_plan) {
+            replaceFragment(nav_myPlan);
 
+
+        } else if (id == R.id.nav_akun) {
+            replaceFragment(nav_akun);
+
+
+        } else if (id == R.id.nav_logout) {
+            sessionManager.destroySession();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -173,4 +212,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Showing Alert Message
         alertDialog.show();
     }
+
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frame_container, fragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.commit();
+    }
+
 }
