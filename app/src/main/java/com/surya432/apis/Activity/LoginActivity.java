@@ -6,25 +6,37 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.surya432.apis.Helpers.NetworkManager;
 import com.surya432.apis.Helpers.SessionManager;
 import com.surya432.apis.MainActivity;
 import com.surya432.apis.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Optional;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
+    @BindView(R.id.input_password)
+    EditText input_password;
+    @BindView(R.id.input_username)
+    EditText input_username;
     private Intent intent;
     private SessionManager sessionManagerLogin;
 
     @Optional
     @OnClick(R.id.btn_login)
     public void btnLogin() {
-        sessionManagerLogin.setLogin(true, "access", "haho");
+        String KeyJob = "Driver";
+        String UserId = input_username.getText().toString().toLowerCase();
+        Log.d(TAG, "btnLogin: " + UserId);
+        if (UserId.equals("sales")) {
+            KeyJob = "Sales";
+        }
+        sessionManagerLogin.setLogin(true, "access", input_username.getText().toString().trim(), KeyJob);
         intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -70,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // Write your code here to invoke NO event
-                            dialog.cancel();
+                            //dialog.cancel();
                         }
                     });
             // Showing Alert Message
@@ -106,6 +118,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         // Write your code here to invoke NO event
                         dialog.cancel();
+                        //finish();
+
                     }
                 });
         // Showing Alert Message

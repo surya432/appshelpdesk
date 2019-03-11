@@ -26,6 +26,7 @@ public class SessionManager {
     public static final String KEY_USERNAME = "username";
     public static final String KEY_ROLE = "role";
     public static final String KEY_TOKEN_GCM = "token_gcm";
+    public static final String KEY_JOB = null;
 
     public SessionManager(Context context) {
         this._context = context;
@@ -33,11 +34,12 @@ public class SessionManager {
         editor = pref.edit();
     }
 
-    public void setLogin(boolean isLoggedIn, String pid, String name) {
+    public void setLogin(boolean isLoggedIn, String pid, String name, String job) {
 
         editor.putBoolean(IS_LOGGEDIN, isLoggedIn);
         editor.putString(KEY_PID, pid);
         editor.putString(KEY_NAME, name);
+        editor.putString(KEY_JOB, job);
         // commit changes
         editor.apply();
 
@@ -79,6 +81,7 @@ public class SessionManager {
     public void destroySession(){
         editor.putString(KEY_PID, "");
         editor.putString(KEY_NAME, "");
+        editor.putString(KEY_JOB, "");
         editor.putBoolean(IS_LOGGEDIN, false);
         //editor.clear();
         editor.apply();
@@ -93,5 +96,9 @@ public class SessionManager {
 
     public String getData(String key) {
         return pref.getString(key, "");
+    }
+
+    public String getJob() {
+        return pref.getString(KEY_JOB, "null");
     }
 }
