@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void getRoles() {
-        Log.d(TAG, "checkInetSession: " + sessionManager.getJob().toString());
+        Log.d(TAG, "checkInetSession: " + sessionManager.getJob());
         if (sessionManager.getJob().equals("Sales")) {
             replaceFragment(salesFragment);
         } else {
