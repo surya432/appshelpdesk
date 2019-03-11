@@ -111,7 +111,7 @@
 
                                 android:layout_height="50dp"
                                 android:padding="5dp"
-                                android:src="@drawable/icon04" />
+                                android:src="@drawable/delivery" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -139,7 +139,7 @@
 
                                 android:layout_height="50dp"
                                 android:padding="5dp"
-                                android:src="@drawable/icon03" />
+                                android:src="@drawable/done_delivery" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -324,7 +324,7 @@
 
                                 android:layout_height="50dp"
                                 android:padding="5dp"
-                                android:src="@drawable/icon05" />
+                                android:src="@drawable/done_delivery" />
 
                             <TextView
                                 android:layout_width="match_parent"
