@@ -17,4 +17,5 @@
     <string name="todo">TODO</string>
     <string name="geo_tag">Geo Tag</string>
     <string name="history_pengiriman">History Pengiriman</string>
+    <string name="title_activity_realisasi_kegiatan">RealisasiKegiatanActivity</string>
 </resources>
