@@ -102,6 +102,7 @@
                         android:padding="2dp">
 
                         <LinearLayout
+                            android:id="@+id/planPengiriman"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -130,6 +131,7 @@
                         android:padding="2dp">
 
                         <LinearLayout
+                            android:id="@+id/driverRealisasiKegiatan"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">

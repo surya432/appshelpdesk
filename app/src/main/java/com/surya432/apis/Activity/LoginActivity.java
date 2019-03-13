@@ -1,5 +1,6 @@
 package com.surya432.apis.Activity;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +18,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Optional;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
+    private static final int RC_CAMERA_AND_LOCATION_AND_STORAGE = 1011;
     @BindView(R.id.input_password)
     EditText input_password;
     @BindView(R.id.input_username)
@@ -47,7 +51,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        checkInet();
+        methodRequiresTwoPermission();
+
 
     }
 
@@ -125,4 +130,28 @@ public class LoginActivity extends AppCompatActivity {
         // Showing Alert Message
         alertDialog.show();
     }
+
+    @AfterPermissionGranted(RC_CAMERA_AND_LOCATION_AND_STORAGE)
+    private void methodRequiresTwoPermission() {
+        String[] perms = {
+                Manifest.permission.CAMERA,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.INTERNET,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_NETWORK_STATE,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        };
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            // Already have permission, do the thing
+            // ...
+            Log.d(TAG, "methodRequiresTwoPermission: TRUE");
+            checkInet();
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, getString(R.string.camera_and_location_rationale),
+                    RC_CAMERA_AND_LOCATION_AND_STORAGE, perms);
+        }
+    }
+
 }

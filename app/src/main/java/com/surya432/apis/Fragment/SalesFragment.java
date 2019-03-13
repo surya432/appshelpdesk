@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.surya432.apis.Activity.SalesPlaningKegiatanActivity;
+import com.surya432.apis.Activity.Sales.SalesGEOTagActivity;
+import com.surya432.apis.Activity.Sales.SalesRealisasiKegiatanActivity;
+import com.surya432.apis.Activity.Sales.SalesPlaningKegiatanActivity;
 import com.surya432.apis.Helpers.SessionManager;
 import com.surya432.apis.R;
 
@@ -25,6 +27,10 @@ public class SalesFragment extends Fragment {
     TextView namaPegawai;
     @BindView(R.id.jabatanPegawai)
     TextView jabatanPegawai;
+    @BindView(R.id.salesRealisasi)
+    LinearLayout salesRealisasi;
+    @BindView(R.id.salesGeoTag)
+    LinearLayout salesGeoTag;
     private Intent intent;
     private SessionManager sessionManager;
     public SalesFragment() {
@@ -55,6 +61,22 @@ public class SalesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 intent = new Intent(getContext(), SalesPlaningKegiatanActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().startActivity(intent);
+            }
+        });
+        salesRealisasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getContext(), SalesRealisasiKegiatanActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().startActivity(intent);
+            }
+        });
+        salesGeoTag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getContext(), SalesGEOTagActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getActivity().startActivity(intent);
             }
