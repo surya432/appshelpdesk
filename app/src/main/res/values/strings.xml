@@ -18,4 +18,12 @@
     <string name="geo_tag">Geo Tag</string>
     <string name="history_pengiriman">History Pengiriman</string>
     <string name="title_activity_realisasi_kegiatan">RealisasiKegiatanActivity</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Cari...</string>
+    <string name="title_activity_driver_planing_kegiatan">DriverPlaningKegiatanActivity</string>
+    <string name="title_activity_driver_realisasi_kegiatan">DriverRealisasiKegiatanActivity</string>
+    <string name="camera_and_location_rationale">Apps Ini Membutuhkan Akses Kamera, GPS, STORAGE.</string>
+    <string name="title_activity_sales_geotag">SalesGEOTagActivity</string>
+    <string name="title_activity_sales_geotag_detail">SalesGEOTagDetailActivity</string>
+    <string name="btn_simpan">Simpan</string>
 </resources>

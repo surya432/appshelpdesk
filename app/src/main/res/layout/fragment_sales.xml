@@ -131,6 +131,7 @@
                         android:padding="2dp">
 
                         <LinearLayout
+                            android:id="@+id/salesRealisasi"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -245,6 +246,7 @@
                         android:padding="2dp">
 
                         <LinearLayout
+                            android:id="@+id/salesGeoTag"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">

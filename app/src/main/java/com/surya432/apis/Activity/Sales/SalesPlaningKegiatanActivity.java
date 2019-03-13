@@ -1,4 +1,4 @@
-package com.surya432.apis.Activity;
+package com.surya432.apis.Activity.Sales;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +10,8 @@ import android.view.View;
 
 import com.surya432.apis.R;
 
+import java.util.Objects;
+
 public class SalesPlaningKegiatanActivity extends AppCompatActivity {
 
     @Override
@@ -18,7 +20,7 @@ public class SalesPlaningKegiatanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sales_planing_kegiatan);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Jadwal Hari Ini");
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
