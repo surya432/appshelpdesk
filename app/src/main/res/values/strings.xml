@@ -26,4 +26,11 @@
     <string name="title_activity_sales_geotag">SalesGEOTagActivity</string>
     <string name="title_activity_sales_geotag_detail">SalesGEOTagDetailActivity</string>
     <string name="btn_simpan">Simpan</string>
+    <string name="koordinat_tempat">Lokasi Tempat</string>
+    <string name="no_telepon_customer">No Telepon Customer</string>
+    <string name="nama_customer">Nama Customer</string>
+    <string name="nama_customer2">Nama Customer</string>
+    <string name="alamat_customer">Alamat Customer</string>
+    <string name="foto_tampak_depan">Foto Tampak Depan</string>
+    <string name="foto_tampak_Belakang">Foto Tampak Belakang</string>
 </resources>

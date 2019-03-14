@@ -143,8 +143,6 @@ public class LoginActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_FINE_LOCATION
         };
         if (EasyPermissions.hasPermissions(this, perms)) {
-            // Already have permission, do the thing
-            // ...
             Log.d(TAG, "methodRequiresTwoPermission: TRUE");
             checkInet();
         } else {
