@@ -33,4 +33,20 @@
     <string name="alamat_customer">Alamat Customer</string>
     <string name="foto_tampak_depan">Foto Tampak Depan</string>
     <string name="foto_tampak_Belakang">Foto Tampak Belakang</string>
+    <string name="title_activity_sales_realisasi_check">SalesRealisasiCheckActivity</string>
+    <string name="check_nama_toko">Dani Jaya</string>
+    <string name="est_sampai_lokasi">Est. Sampai Lokasi</string>
+    <string name="jam_8_30">8.30</string>
+    <string name="pic_customer">PIC Customer</string>
+    <string name="name_person">Nama Orang</string>
+    <string name="val_no_tlpn">087824566348</string>
+    <string name="valKeperluan">Info EKatalog Baru</string>
+    <string name="keperluan">Keperluan</string>
+    <string name="satusCheck">Status</string>
+    <string name="valStatusCheck">Belum Dijalankan</string>
+    <string name="checkIn">Check In</string>
+    <string name="valCheckin">-</string>
+    <string name="valCheckOut">-</string>
+    <string name="CheckOut">Check Out</string>
+    <string name="btn_CheckIn">Check In</string>
 </resources>

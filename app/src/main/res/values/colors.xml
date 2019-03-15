@@ -7,4 +7,5 @@
     <color name="colorAccent">#0290d1</color>
     <color name="colorAccent2">#D81B60</color>
     <color name="colordasar">#0290d1</color>
+    <color name="bgColor">#777777</color>
 </resources>
