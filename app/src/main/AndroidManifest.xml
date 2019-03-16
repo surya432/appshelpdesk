@@ -22,6 +22,14 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
         <activity
+            android:name=".Activity.Sales.SalesComplainTrackingActivity"
+            android:label="@string/title_activity_sales_complain"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".SalesAddComplainActivity"
+            android:label="@string/title_activity_sales_add_complain"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Activity.Sales.SalesRealisasiCheckActivity"
             android:label="@string/title_activity_sales_realisasi_check"
             android:parentActivityName=".Activity.Sales.SalesRealisasiKegiatanActivity"
@@ -39,7 +47,7 @@
             android:name=".Activity.Sales.SalesGEOTagDetailActivity"
             android:label="@string/title_activity_sales_geotag_detail"
             android:parentActivityName=".Activity.Sales.SalesGEOTagActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Sales.SalesGEOTagActivity"
             android:label="@string/title_activity_sales_geotag"

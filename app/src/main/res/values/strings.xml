@@ -49,4 +49,8 @@
     <string name="valCheckOut">-</string>
     <string name="CheckOut">Check Out</string>
     <string name="btn_CheckIn">Check In</string>
+    <string name="val_alamat_customer">Perum Rungkut Asri XI Surabaya Jawa Timur</string>
+    <string name="title_activity_sales_add_complain">SalesAddComplainActivity</string>
+    <string name="dapertemen_tujuan">Dapertemen Tujuan</string>
+    <string name="title_activity_sales_complain">SalesComplainActivity</string>
 </resources>
