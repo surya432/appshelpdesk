@@ -60,54 +60,6 @@
                         android:padding="2dp">
 
                         <LinearLayout
-                            android:id="@+id/planPengiriman"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="left"
-                                android:textColor="#000"
-                                android:text="@string/est_sampai_lokasi" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-
-                        android:layout_weight="1"
-                        android:padding="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/jam_pukul"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text="@string/jam_8_30" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="2dp">
-
-                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -118,8 +70,8 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
 
-                                android:textColor="#000"
-                                android:text="@string/pic_customer" />
+                                android:text="@string/pic_customer"
+                                android:textColor="#000" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -167,8 +119,8 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
 
-                                android:textColor="#000"
-                                android:text="@string/no_telepon_customer" />
+                                android:text="@string/no_telepon_customer"
+                                android:textColor="#000" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -214,9 +166,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
-
-                                android:textColor="#000"
-                                android:text="@string/keperluan" />
+                                android:text="@string/alamat_customer"
+                                android:textColor="#000" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -233,154 +184,258 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/valKeperluan"
+                                android:id="@+id/alamatCustomer"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="right"
-                                android:text="@string/valKeperluan" />
+                                android:text="@string/val_alamat_customer" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/rowRealisasi"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="2dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="2dp">
 
-
-                            <TextView
+                            <LinearLayout
+                                android:id="@+id/planPengiriman"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="left"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
 
-                                android:textColor="#000"
-                                android:text="@string/satusCheck" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+                                    android:text="@string/est_sampai_lokasi"
+                                    android:textColor="#000" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:padding="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/jam_pukul"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="right"
+                                    android:text="@string/jam_8_30" />
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-
-                        android:layout_weight="1"
-                        android:padding="2dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="2dp">
 
-                            <TextView
-                                android:id="@+id/valStatusCheck"
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text="@string/valStatusCheck" />
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+
+                                    android:text="@string/keperluan"
+                                    android:textColor="#000" />
+                            </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="2dp">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
 
+                            android:layout_weight="1"
+                            android:padding="2dp">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="left"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
 
-                                android:textColor="#000"
-                                android:text="@string/checkIn" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-
-                        android:layout_weight="1"
-                        android:padding="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/valCheckin"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text="@string/valCheckin" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="left"
-                                android:textColor="#000"
-                                android:text="@string/CheckOut" />
+                                <TextView
+                                    android:id="@+id/valKeperluan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="right"
+                                    android:text="@string/valKeperluan" />
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-
-                        android:layout_weight="1"
-                        android:padding="2dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="2dp">
 
-                            <TextView
-                                android:id="@+id/valCheckOut"
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text="@string/valCheckOut" />
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+
+                                    android:text="@string/satusCheck"
+                                    android:textColor="#000" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:padding="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/valStatusCheck"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="right"
+                                    android:text="@string/valStatusCheck" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+
+                                    android:text="@string/checkIn"
+                                    android:textColor="#000" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:padding="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/valCheckin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="right"
+                                    android:text="@string/valCheckin" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+                                    android:text="@string/CheckOut"
+                                    android:textColor="#000" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:padding="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/valCheckOut"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="right"
+                                    android:text="@string/valCheckOut" />
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -412,41 +467,61 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/lapaoranChekout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:padding="4dp">
+
+                    <EditText
+                        android:id="@+id/input_laporan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="10dp"
+                        android:hint="Laporan"
+                        android:inputType="textMultiLine" />
+                </android.support.design.widget.TextInputLayout>
+
                 <Button
                     android:id="@+id/checkIn"
-                    android:layout_margin="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:layout_margin="8dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@color/colordasar"
                     android:padding="10dp"
-                    android:layout_marginBottom="8dp"
                     android:text="@string/btn_CheckIn"
                     android:textColor="#fff"
                     android:textSize="16sp" />
+
                 <Button
                     android:id="@+id/ListComplain"
-                    android:layout_margin="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:layout_margin="8dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@color/colordasar"
                     android:padding="10dp"
                     android:text="Complain"
-                    android:layout_marginBottom="8dp"
                     android:textColor="#fff"
                     android:textSize="16sp" />
+
                 <Button
                     android:id="@+id/BukaMap"
-                    android:layout_margin="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:layout_margin="8dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@color/colordasar"
                     android:padding="10dp"
                     android:text="Buka Map"
-                    android:layout_marginBottom="8dp"
                     android:textColor="#fff"
                     android:textSize="16sp" />
             </LinearLayout>

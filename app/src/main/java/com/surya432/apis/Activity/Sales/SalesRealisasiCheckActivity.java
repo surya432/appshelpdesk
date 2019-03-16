@@ -1,21 +1,24 @@
 package com.surya432.apis.Activity.Sales;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.surya432.apis.R;
+import com.surya432.apis.SalesAddComplainActivity;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,9 +29,21 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
     Button checkIn;
     @BindView(R.id.BukaMap)
     Button BukaMap;
-
+    @BindView(R.id.rowRealisasi)
+    LinearLayout rowRealisasi;
     @BindView(R.id.valNoTlpn)
     TextView valNoTlpn;
+    @BindView(R.id.valCheckOut)
+    TextView valCheckOut;
+    @BindView(R.id.valCheckin)
+    TextView valCheckIn;
+    @BindView(R.id.lapaoranChekout)
+    TextInputLayout lapaoranChekout;
+    @BindView(R.id.ListComplain)
+    Button ListComplain;
+
+    private Boolean SalesCheckIn = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,18 +55,23 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                String url = valNoTlpn.getText().toString().substring(1, valNoTlpn.length());
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                // Send phone number to intent as data
+                intent.setData(Uri.parse("tel:+62" + url));
+                // Start the dialer app activity with number
+                startActivity(intent);
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ButterKnife.bind(this);
-
         getSupportActionBar().setTitle("Detail Customer");
         String Data = getIntent().getStringExtra("Data");
         switch (Data) {
             case "Realisasi":
-
+                SalesCheckIn = false;
+                rowRealisasi.setVisibility(View.VISIBLE);
                 break;
             case "Planning":
                 checkIn.setVisibility(View.GONE);
@@ -61,12 +81,27 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
                 break;
 
         }
+        SalesCheckIn = true;
+        lapaoranChekout.setVisibility(View.GONE);
         checkIn.setText("Check In");
         checkIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Berhasil Check In", Toast.LENGTH_SHORT).show();
-                checkIn.setText("Check Out");
+                DateFormat df = new SimpleDateFormat("HH:mm");
+                String date = df.format(Calendar.getInstance().getTime());
+                if (SalesCheckIn) {
+                    valCheckIn.setText(date);
+                    Toast.makeText(getApplicationContext(), "Berhasil Check In " + date, Toast.LENGTH_SHORT).show();
+                    checkIn.setText("Check Out");
+                    SalesCheckIn = false;
+                    lapaoranChekout.setVisibility(View.VISIBLE);
+                } else {
+                    lapaoranChekout.setVisibility(View.GONE);
+                    SalesCheckIn = true;
+                    valCheckOut.setText(date);
+                    Toast.makeText(getApplicationContext(), "Berhasil Check Out " + date, Toast.LENGTH_SHORT).show();
+                    checkIn.setText("Check In");
+                }
             }
         });
 
@@ -75,6 +110,7 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Uri gmmIntentUri = Uri.parse("geo:-7.3310465,112.779884?z=18");
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
 
@@ -83,10 +119,11 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
         valNoTlpn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = valNoTlpn.getText().toString().substring(1,valNoTlpn.length());
+                String url = valNoTlpn.getText().toString().substring(1, valNoTlpn.length());
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 // Send phone number to intent as data
                 intent.setData(Uri.parse("tel:+62" + url));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 // Start the dialer app activity with number
                 startActivity(intent);
                 /*Log.d(TAG, "onClick: "+url);
@@ -102,7 +139,16 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
                 }*/
             }
         });
+        ListComplain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SalesComplainTrackingActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
     }
+
 
     @Override
     public void onBackPressed() {

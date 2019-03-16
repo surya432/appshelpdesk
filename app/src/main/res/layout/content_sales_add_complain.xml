@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".SalesAddComplainActivity"
+    tools:showIn="@layout/activity_sales_add_complain">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:padding="4sp"
+            android:text="@string/nama_customer"
+            android:textColor="@color/colordasar"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/namaCustomer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/border_blue"
+            android:padding="4dp"
+            android:text="PT ABC2"
+            android:textColor="@color/colordasar"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:padding="4sp"
+            android:text="@string/dapertemen_tujuan"
+            android:textColor="@color/colordasar"
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/dropdownDapertemen"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/border_blue"
+            android:padding="4dp"
+            android:textColor="@color/colordasar"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:padding="4sp"
+            android:text="Pesan"
+            android:textColor="@color/colordasar"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/ComplainPesan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/border_blue"
+            android:gravity="top"
+            android:hint="Pesan"
+            android:inputType="textMultiLine"
+            android:lines="10"
+            android:padding="4dp"
+            android:textColor="@color/colordasar"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
