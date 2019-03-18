@@ -174,7 +174,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical|center_horizontal"
-                                android:text="Update Kegiatan" />
+                                android:text="@string/update_kegiatan" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -209,7 +209,7 @@
 
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical|center_horizontal"
-                                android:text="Complain" />
+                                android:text="@string/complain" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -221,6 +221,7 @@
                         android:padding="2dp">
 
                         <LinearLayout
+                            android:id="@+id/SaleslistCustomer"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -234,7 +235,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical|center_horizontal"
-                                android:text="Customer" />
+                                android:text="@string/customer" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -262,7 +263,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical|center_horizontal"
-                                android:text="Geo Tag" />
+                                android:text="@string/geo_tag2" />
                         </LinearLayout>
                     </LinearLayout>
 

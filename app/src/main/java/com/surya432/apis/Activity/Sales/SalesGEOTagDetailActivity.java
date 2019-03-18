@@ -69,6 +69,10 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
         Log.d(TAG, "reset: ");
         sMap.clear();
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.surya432.apis.R;
-import com.surya432.apis.SalesAddComplainActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -153,5 +152,6 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        finish();
     }
 }

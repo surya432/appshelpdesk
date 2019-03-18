@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.surya432.apis.Activity.Sales.SalesGEOTagActivity;
+import com.surya432.apis.Activity.Sales.SalesListCustomerActivity;
 import com.surya432.apis.Activity.Sales.SalesRealisasiKegiatanActivity;
 import com.surya432.apis.Activity.Sales.SalesPlaningKegiatanActivity;
 import com.surya432.apis.Helpers.SessionManager;
@@ -31,6 +32,8 @@ public class SalesFragment extends Fragment {
     LinearLayout salesRealisasi;
     @BindView(R.id.salesGeoTag)
     LinearLayout salesGeoTag;
+    @BindView(R.id.SaleslistCustomer)
+    LinearLayout SaleslistCustomer;
     private Intent intent;
     private SessionManager sessionManager;
     public SalesFragment() {
@@ -77,6 +80,14 @@ public class SalesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 intent = new Intent(getContext(), SalesGEOTagActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().startActivity(intent);
+            }
+        });
+        SaleslistCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getContext(), SalesListCustomerActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getActivity().startActivity(intent);
             }

@@ -53,4 +53,9 @@
     <string name="title_activity_sales_add_complain">SalesAddComplainActivity</string>
     <string name="dapertemen_tujuan">Dapertemen Tujuan</string>
     <string name="title_activity_sales_complain">SalesComplainActivity</string>
+    <string name="title_activity_sales_list_customer">SalesListCustomerActivity</string>
+    <string name="customer">Customer</string>
+    <string name="geo_tag2">Geo Tag</string>
+    <string name="complain">Complain</string>
+    <string name="update_kegiatan">Update Kegiatan</string>
 </resources>
