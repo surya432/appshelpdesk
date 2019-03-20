@@ -22,11 +22,33 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
         <activity
+            android:name=".Activity.Sales.SalesComplainActivity"
+            android:label="@string/title_activity_sales_complain"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.surya432.apis.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Activity.Sales.SalesUpdateKegiatanActivity"
+            android:label="@string/title_activity_sales_update_kegiatan"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.surya432.apis.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Activity.Sales.SalesJadwalFormActivity"
+            android:label="@string/title_activity_sales_jadwal_form"
+            android:parentActivityName=".Activity.Sales.SalesListCustomerActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Activity.Sales.SalesListCustomerActivity"
             android:label="@string/title_activity_sales_list_customer"
-
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Sales.SalesComplainTrackingActivity"
             android:label="@string/title_activity_sales_complain"
@@ -35,7 +57,6 @@
         <activity
             android:name=".Activity.Sales.SalesAddComplainActivity"
             android:label="@string/title_activity_sales_add_complain"
-
             android:noHistory="true"
             android:parentActivityName=".Activity.Sales.SalesComplainTrackingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -56,7 +77,6 @@
         <activity
             android:name=".Activity.Sales.SalesGEOTagDetailActivity"
             android:label="@string/title_activity_sales_geotag_detail"
-
             android:noHistory="true"
             android:parentActivityName=".Activity.Sales.SalesGEOTagActivity"
             android:theme="@style/AppTheme.NoActionBar" />

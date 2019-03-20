@@ -25,6 +25,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.surya432.apis.Activity.Sales.Model.CustomerModel;
 import com.surya432.apis.R;
 
 import java.util.List;
@@ -36,26 +37,26 @@ import butterknife.OnClick;
 
 public class SalesGEOTagDetailActivity extends AppCompatActivity implements LocationListener, OnMapReadyCallback, View.OnClickListener {
 
+    public static final String EXTRA_DATA = "EXTRA_DATA";
     private static final String TAG = SalesGEOTagDetailActivity.class.getSimpleName();
-    // location updates interval - 10sec
-    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
-    // fastest updates interval - 5 sec
-    // location updates will be received if another app is requesting the locations
-    // than your app can handle
-    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 5000;
-    private static final int REQUEST_CHECK_SETTINGS = 100;
+
     @BindView(R.id.btnSimpan)
     Button btnSimpan;
     @BindView(R.id.koordinatMap)
     TextView koordinatMap;
     @BindView(R.id.salesGeoTagDetail)
     CoordinatorLayout salesGeoTagDetail;
+    @BindView(R.id.alamatCustomer)
+    TextView alamatCustomer;
     private GoogleMap sMap;
     private SupportMapFragment mapFragment;
     private LocationManager locationManager;
     private String lat = "";
     private String lng = "";
     private LatLng latLng;
+    private CustomerModel customerModel;
+    private int position;
+    private Boolean isEdit = false;
 
     @OnClick(R.id.GetTag)
     void gettag() {
@@ -69,6 +70,7 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
         Log.d(TAG, "reset: ");
         sMap.clear();
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -81,7 +83,6 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
         ButterKnife.bind(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Detail");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -91,11 +92,23 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
                         .setAction("Action", null).show();
             }
         });
+        customerModel = getIntent().getParcelableExtra(EXTRA_DATA);
+        Log.d(TAG, "onCreate: "+customerModel);
+        if (customerModel != null) {
+            getSupportActionBar().setTitle("EDIT");
+            position = getIntent().getIntExtra(EXTRA_DATA, 0);
+            latLng = new LatLng(122.213123, 123.232123);
+            isEdit = true;
+            getLocation();
+        } else {
 
-        getLocation();
-        mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+            getSupportActionBar().setTitle("Tambah");
+            getLocation();
+            mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
+        }
+
         btnSimpan.setOnClickListener(this);
 
     }
@@ -124,14 +137,12 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
     private void getLocation() {
         try {
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, this);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 1, this);
         } catch (SecurityException e) {
             e.printStackTrace();
         }
     }
 
-    @BindView(R.id.alamatCustomer)
-    TextView alamatCustomer;
     @Override
     public void onLocationChanged(Location location) {
         Log.d(TAG, "onLocationChanged: " + location.getLatitude() + location.getLongitude());
@@ -174,10 +185,16 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSimpan:
-                String numberAsString = lat;
-                String numberAsString2 = lng;
+                String LatLNG = latLng.toString();
                 Log.d(TAG, "onClick: " + lat + ", " + lng);
-                Snackbar.make(salesGeoTagDetail, "data loc " + numberAsString + ", " + numberAsString2, Snackbar.LENGTH_SHORT)
+                String Optioonns = "";
+                if (isEdit) {
+                    Optioonns = "Update";
+
+                } else {
+                    Optioonns = "SImpan";
+                }
+                Snackbar.make(salesGeoTagDetail, "data loc " + LatLNG+" "+ Optioonns, Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
                 break;
 

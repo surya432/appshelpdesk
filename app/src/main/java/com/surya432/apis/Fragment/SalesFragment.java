@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.surya432.apis.Activity.Sales.SalesComplainActivity;
 import com.surya432.apis.Activity.Sales.SalesGEOTagActivity;
 import com.surya432.apis.Activity.Sales.SalesListCustomerActivity;
-import com.surya432.apis.Activity.Sales.SalesRealisasiKegiatanActivity;
 import com.surya432.apis.Activity.Sales.SalesPlaningKegiatanActivity;
+import com.surya432.apis.Activity.Sales.SalesRealisasiKegiatanActivity;
+import com.surya432.apis.Activity.Sales.SalesUpdateKegiatanActivity;
 import com.surya432.apis.Helpers.SessionManager;
 import com.surya432.apis.R;
 
@@ -30,12 +32,17 @@ public class SalesFragment extends Fragment {
     TextView jabatanPegawai;
     @BindView(R.id.salesRealisasi)
     LinearLayout salesRealisasi;
+    @BindView(R.id.SalesUpdateKegiatan)
+    LinearLayout SalesUpdateKegiatan;
     @BindView(R.id.salesGeoTag)
     LinearLayout salesGeoTag;
     @BindView(R.id.SaleslistCustomer)
     LinearLayout SaleslistCustomer;
+    @BindView(R.id.SalesComplainList)
+    LinearLayout SalesComplainList;
     private Intent intent;
     private SessionManager sessionManager;
+
     public SalesFragment() {
         // Required empty public constructor
     }
@@ -60,6 +67,7 @@ public class SalesFragment extends Fragment {
     private void firstLoad() {
         namaPegawai.setText(sessionManager.getName());
         jabatanPegawai.setText(sessionManager.getJob());
+
         planKegiatan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +76,7 @@ public class SalesFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+
         salesRealisasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +85,7 @@ public class SalesFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+
         salesGeoTag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,10 +94,28 @@ public class SalesFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+
         SaleslistCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(getContext(), SalesListCustomerActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        SalesUpdateKegiatan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getContext(), SalesUpdateKegiatanActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().startActivity(intent);
+            }
+        });
+        SalesComplainList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getContext(), SalesComplainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getActivity().startActivity(intent);
             }

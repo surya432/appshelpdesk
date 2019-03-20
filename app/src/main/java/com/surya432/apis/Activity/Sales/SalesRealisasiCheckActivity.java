@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.surya432.apis.Activity.Sales.Model.CustomerModel;
 import com.surya432.apis.R;
 
 import java.text.DateFormat;
@@ -21,6 +22,8 @@ import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.surya432.apis.Activity.Sales.SalesGEOTagDetailActivity.EXTRA_DATA;
 
 public class SalesRealisasiCheckActivity extends AppCompatActivity {
     private static final String TAG = SalesRealisasiCheckActivity.class.getSimpleName();
@@ -40,6 +43,10 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
     TextInputLayout lapaoranChekout;
     @BindView(R.id.ListComplain)
     Button ListComplain;
+    @BindView(R.id.SalesUpdateJadwal)
+    Button SalesUpdateJadwal;
+    @BindView(R.id.SalesAddJadwal)
+    Button SalesAddJadwal;
 
     private Boolean SalesCheckIn = false;
 
@@ -73,9 +80,11 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
                 rowRealisasi.setVisibility(View.VISIBLE);
                 break;
             case "Planning":
+                SalesUpdateJadwal.setVisibility(View.VISIBLE);
                 checkIn.setVisibility(View.GONE);
                 break;
             case "Customer":
+                SalesAddJadwal.setVisibility(View.VISIBLE);
                 checkIn.setVisibility(View.GONE);
                 break;
 
@@ -143,6 +152,26 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SalesComplainTrackingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+        SalesAddJadwal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent intent = new Intent(getApplicationContext(), SalesJadwalFormActivity.class);
+              intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+              intent.putExtra("EXTRA_DATA", false);
+              startActivity(intent);
+            }
+        });
+
+        SalesUpdateJadwal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), SalesJadwalFormActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("EXTRA_DATA", true);
                 startActivity(intent);
             }
         });
