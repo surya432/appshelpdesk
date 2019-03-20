@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Activity.Sales.SalesGEOTagActivity"
-    tools:showIn="@layout/activity_sales_geotag">
+    tools:context=".Activity.Sales.SalesComplainActivity"
+    tools:showIn="@layout/activity_sales_complain">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,5 +72,4 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
-
 </android.support.constraint.ConstraintLayout>

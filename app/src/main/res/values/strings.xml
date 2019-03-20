@@ -58,4 +58,8 @@
     <string name="geo_tag2">Geo Tag</string>
     <string name="complain">Complain</string>
     <string name="update_kegiatan">Update Kegiatan</string>
+    <string name="update_jadwal">Update jadwal</string>
+    <string name="tambah_jadwal">Tambah jadwal</string>
+    <string name="title_activity_sales_jadwal_form">SalesJadwalFormActivity</string>
+    <string name="title_activity_sales_update_kegiatan">SalesUpdateKegiatanActivity</string>
 </resources>
