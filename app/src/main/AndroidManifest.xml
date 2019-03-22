@@ -22,6 +22,34 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
         <activity
+            android:name=".Activity.Sales.SalesReviewComplainActivity"
+            android:label="@string/title_activity_sales_review_complain"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.surya432.apis.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Activity.Sales.SalesReviewUpdateActivity"
+            android:label="@string/title_activity_sales_review_update"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.surya432.apis.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Activity.Sales.SalesReviewKegiatanActivity"
+            android:label="@string/title_activity_sales_review_kegiatan"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.surya432.apis.MainActivity" />
+        </activity>
+        <activity
             android:name=".Activity.Sales.SalesComplainActivity"
             android:label="@string/title_activity_sales_complain"
             android:parentActivityName=".MainActivity"

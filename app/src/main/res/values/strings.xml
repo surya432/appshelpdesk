@@ -62,4 +62,12 @@
     <string name="tambah_jadwal">Tambah jadwal</string>
     <string name="title_activity_sales_jadwal_form">SalesJadwalFormActivity</string>
     <string name="title_activity_sales_update_kegiatan">SalesUpdateKegiatanActivity</string>
+    <string name="title_activity_sales_review_realisasi">SalesReviewRealisasiActivity</string>
+    <string name="title_activity_sales_review_kegiatan">SalesReviewKegiatanActivity</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="cari">Cari</string>
+    <string name="reset">Reset</string>
+    <string name="lorem_ipsum">lorem ipsum dolor sit,lorem ipsum dolor sit,lorem ipsum dolor sit ,lorem ipsum dolor sit</string>
+    <string name="title_activity_sales_review_update">SalesReviewUpdateActivity</string>
+    <string name="title_activity_sales_review_complain">SalesReviewComplainActivity</string>
 </resources>

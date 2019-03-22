@@ -14,16 +14,31 @@ import com.surya432.apis.Activity.Sales.SalesGEOTagActivity;
 import com.surya432.apis.Activity.Sales.SalesListCustomerActivity;
 import com.surya432.apis.Activity.Sales.SalesPlaningKegiatanActivity;
 import com.surya432.apis.Activity.Sales.SalesRealisasiKegiatanActivity;
+import com.surya432.apis.Activity.Sales.SalesReviewComplainActivity;
+import com.surya432.apis.Activity.Sales.SalesReviewKegiatanActivity;
+import com.surya432.apis.Activity.Sales.SalesReviewUpdateActivity;
 import com.surya432.apis.Activity.Sales.SalesUpdateKegiatanActivity;
 import com.surya432.apis.Helpers.SessionManager;
 import com.surya432.apis.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class SalesFragment extends Fragment {
-
+    @OnClick(R.id.SalesReviewComplain)
+    void SalesReviewComplainClick (){
+        intent = new Intent(getContext(), SalesReviewComplainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getActivity().startActivity(intent);
+    }
+    @OnClick(R.id.SalesReviewUpdate)
+    void SalesReviewUpdateClick (){
+        intent = new Intent(getContext(), SalesReviewUpdateActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getActivity().startActivity(intent);
+    }
     @BindView(R.id.PlanKegiatan)
     LinearLayout planKegiatan;
     @BindView(R.id.namaPegawai)
@@ -40,6 +55,8 @@ public class SalesFragment extends Fragment {
     LinearLayout SaleslistCustomer;
     @BindView(R.id.SalesComplainList)
     LinearLayout SalesComplainList;
+    @BindView(R.id.SalesReviewRealisasi)
+    LinearLayout SalesReviewRealisasi;
     private Intent intent;
     private SessionManager sessionManager;
 
@@ -120,6 +137,15 @@ public class SalesFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+        SalesReviewRealisasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getContext(), SalesReviewKegiatanActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().startActivity(intent);
+            }
+        });
+
     }
 
 
