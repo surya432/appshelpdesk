@@ -27,9 +27,9 @@ import static com.surya432.apis.Activity.Sales.SalesGEOTagDetailActivity.EXTRA_D
 
 public class SalesRealisasiCheckActivity extends AppCompatActivity {
     private static final String TAG = SalesRealisasiCheckActivity.class.getSimpleName();
-    @BindView(R.id.checkIn)
+    @BindView(R.id.BtncheckIn)
     Button checkIn;
-    @BindView(R.id.BukaMap)
+    @BindView(R.id.BtnBukaMap)
     Button BukaMap;
     @BindView(R.id.rowRealisasi)
     LinearLayout rowRealisasi;
@@ -41,13 +41,14 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
     TextView valCheckIn;
     @BindView(R.id.lapaoranChekout)
     TextInputLayout lapaoranChekout;
-    @BindView(R.id.ListComplain)
+    @BindView(R.id.BtnListComplain)
     Button ListComplain;
-    @BindView(R.id.SalesUpdateJadwal)
+    @BindView(R.id.BtnSalesUpdateJadwal)
     Button SalesUpdateJadwal;
-    @BindView(R.id.SalesAddJadwal)
+    @BindView(R.id.BtnSalesAddJadwal)
     Button SalesAddJadwal;
-
+    @BindView(R.id.BtnSalesGeoTagUpdate)
+    Button BtnSalesGeoTagUpdate;
     private Boolean SalesCheckIn = false;
 
     @Override
@@ -87,7 +88,10 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
                 SalesAddJadwal.setVisibility(View.VISIBLE);
                 checkIn.setVisibility(View.GONE);
                 break;
-
+            case "GeoTag":
+                BtnSalesGeoTagUpdate.setVisibility(View.VISIBLE);
+                checkIn.setVisibility(View.GONE);
+                break;
         }
         SalesCheckIn = true;
         lapaoranChekout.setVisibility(View.GONE);
@@ -168,7 +172,6 @@ public class SalesRealisasiCheckActivity extends AppCompatActivity {
         SalesUpdateJadwal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getApplicationContext(), SalesJadwalFormActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("EXTRA_DATA", true);

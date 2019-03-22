@@ -487,7 +487,7 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <Button
-                    android:id="@+id/checkIn"
+                    android:id="@+id/BtncheckIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -500,7 +500,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/ListComplain"
+                    android:id="@+id/BtnListComplain"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -513,7 +513,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/BukaMap"
+                    android:id="@+id/BtnBukaMap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -526,7 +526,7 @@
                     android:textSize="16sp" />
                 <Button
                     android:visibility="gone"
-                    android:id="@+id/SalesUpdateJadwal"
+                    android:id="@+id/BtnSalesUpdateJadwal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -539,7 +539,7 @@
                     android:textSize="16sp" />
                 <Button
                     android:visibility="gone"
-                    android:id="@+id/SalesAddJadwal"
+                    android:id="@+id/BtnSalesAddJadwal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -547,6 +547,18 @@
                     android:background="@color/colordasar"
                     android:padding="10dp"
                     android:text="@string/tambah_jadwal"
+                    android:textColor="#fff"
+                    android:textSize="16sp" />
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/BtnSalesGeoTagUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/colordasar"
+                    android:padding="10dp"
+                    android:text="Update GeoTag"
                     android:textColor="#fff"
                     android:textSize="16sp" />
             </LinearLayout>

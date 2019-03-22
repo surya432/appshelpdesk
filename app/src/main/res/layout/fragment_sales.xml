@@ -100,23 +100,18 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:padding="2dp">
-
                         <LinearLayout
                             android:id="@+id/PlanKegiatan"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
-
                             <ImageView
                                 android:layout_width="match_parent"
-
                                 android:layout_height="50dp"
                                 android:padding="5dp"
                                 android:src="@drawable/icon03" />
-
                             <TextView
                                 android:layout_width="match_parent"
-
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical|center_horizontal"
                                 android:text="Plan Kegiatan" />
@@ -295,7 +290,6 @@
                     android:layout_margin="16dp">
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Review"
@@ -305,32 +299,26 @@
                 </LinearLayout>
 
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp">
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-
                         android:padding="2dp">
-
                         <LinearLayout
+                            android:id="@+id/SalesReviewRealisasi"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
-
                             <ImageView
                                 android:layout_width="match_parent"
-
                                 android:layout_height="50dp"
                                 android:padding="5dp"
                                 android:src="@drawable/icon05" />
-
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -343,17 +331,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-
                         android:padding="2dp">
 
                         <LinearLayout
+                            android:id="@+id/SalesReviewUpdate"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="match_parent"
-
                                 android:layout_height="50dp"
                                 android:padding="5dp"
                                 android:src="@drawable/icon03" />
@@ -370,20 +357,18 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-
                         android:padding="2dp">
 
                         <LinearLayout
+                            android:id="@+id/SalesReviewComplain"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
-
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:padding="5dp"
                                 android:src="@drawable/icon06" />
-
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
