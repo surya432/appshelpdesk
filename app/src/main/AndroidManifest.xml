@@ -22,11 +22,19 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
         <activity
+            android:name=".Activity.Driver.DriverReviewPengirimanActivity"
+            android:label="@string/title_activity_driver_review_pengiriman"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.surya432.apis.MainActivity" />
+        </activity>
+        <activity
             android:name=".Activity.Sales.SalesReviewComplainActivity"
             android:label="@string/title_activity_sales_review_complain"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.surya432.apis.MainActivity" />
@@ -105,7 +113,6 @@
         <activity
             android:name=".Activity.Sales.SalesGEOTagDetailActivity"
             android:label="@string/title_activity_sales_geotag_detail"
-            android:noHistory="true"
             android:parentActivityName=".Activity.Sales.SalesGEOTagActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

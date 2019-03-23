@@ -5,8 +5,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Activity.Driver.DriverRealisasiKegiatanActivity"
-    tools:showIn="@layout/activity_driver_realisasi_kegiatan">
+    tools:context=".Activity.Driver.DriverReviewPengirimanActivity"
+    tools:showIn="@layout/activity_driver_review_pengiriman">
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="0.8"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="13dp"
+                android:text="@string/tanggal"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1.2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/edtDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="13dp"
+                android:text="20-03-2019"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="0.8"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnCari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colordasar"
+                android:padding="10dp"
+                android:text="@string/cari"
+                android:textColor="#fff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="0.8"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/BtnReset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#E00000"
+                android:padding="10dp"
+                android:text="@string/reset"
+                android:textColor="#fff" />
+        </LinearLayout>
+    </LinearLayout>
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,13 +99,15 @@
         app:cardCornerRadius="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <LinearLayout
             android:id="@+id/contentRow1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:padding="5dp"
+
             android:layout_marginBottom="4dp"
             android:orientation="horizontal"
             android:weightSum="5">
@@ -32,8 +117,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingLeft="4dp"
                 android:paddingStart="4dp"
+                android:paddingLeft="4dp"
                 android:paddingTop="4dp">
 
                 <TextView
@@ -62,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="2dp"
-                    android:src="@drawable/done" />
+                    android:src="@drawable/on_progress" />
             </LinearLayout>
 
             <LinearLayout
@@ -83,13 +168,6 @@
                     android:textSize="18dp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingBottom="2dp"
-                    android:text="Jarwo" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -97,17 +175,8 @@
                     android:paddingLeft="2dp"
                     android:paddingRight="2dp"
                     android:paddingBottom="2dp"
-                    android:text="085272382823832" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingBottom="2dp"
-                    android:text="Jln. Kenjeran No 102, Surabaya Jawa Timur 612733" />
+                    android:text="@string/lorem_ipsum" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
-
 </android.support.constraint.ConstraintLayout>

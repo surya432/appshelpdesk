@@ -31,6 +31,7 @@ public class SalesListCustomerActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("List Customer");
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +44,7 @@ public class SalesListCustomerActivity extends AppCompatActivity {
         });
         ButterKnife.bind(this);
         LoadDefault();
+
     }
 
     private void LoadDefault() {

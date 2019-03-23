@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.surya432.apis.Activity.Driver.DriverPlaningKegiatanActivity;
 import com.surya432.apis.Activity.Driver.DriverRealisasiKegiatanActivity;
+import com.surya432.apis.Activity.Driver.DriverReviewPengirimanActivity;
+import com.surya432.apis.Activity.Sales.SalesGEOTagActivity;
 import com.surya432.apis.Helpers.SessionManager;
 import com.surya432.apis.R;
 
@@ -30,7 +32,11 @@ public class DriverFragment extends Fragment {
     TextView jabatanPegawai;
     @BindView(R.id.driverRealisasiKegiatan)
     LinearLayout driverRealisasiKegiatan;
+    @BindView(R.id.driverReviewPengiriman)
+    LinearLayout driverReviewPengiriman;
     private SessionManager sessionManager;
+    @BindView(R.id.driverGeoTag)
+    LinearLayout driverGeoTag;
 
     @BindView(R.id.planPengiriman)
     LinearLayout planPengiriman;
@@ -64,6 +70,22 @@ public class DriverFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), DriverRealisasiKegiatanActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().startActivity(intent);
+            }
+        });
+        driverGeoTag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SalesGEOTagActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().startActivity(intent);
+            }
+        });
+        driverReviewPengiriman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), DriverReviewPengirimanActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getActivity().startActivity(intent);
             }

@@ -57,6 +57,7 @@ public class SalesReviewUpdateActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        getSupportActionBar().setTitle("Review Laporan Hasil Kegiatan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }

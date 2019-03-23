@@ -70,4 +70,5 @@
     <string name="lorem_ipsum">lorem ipsum dolor sit,lorem ipsum dolor sit,lorem ipsum dolor sit ,lorem ipsum dolor sit</string>
     <string name="title_activity_sales_review_update">SalesReviewUpdateActivity</string>
     <string name="title_activity_sales_review_complain">SalesReviewComplainActivity</string>
+    <string name="title_activity_driver_review_pengiriman">DriverReviewPengirimanActivity</string>
 </resources>

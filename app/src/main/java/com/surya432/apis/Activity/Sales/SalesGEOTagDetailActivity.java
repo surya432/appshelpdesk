@@ -1,20 +1,31 @@
 package com.surya432.apis.Activity.Sales;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +39,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.surya432.apis.Activity.Sales.Model.CustomerModel;
 import com.surya432.apis.R;
 
+import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,7 +51,7 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
 
     public static final String EXTRA_DATA = "EXTRA_DATA";
     private static final String TAG = SalesGEOTagDetailActivity.class.getSimpleName();
-
+    private final int REQUEST_IMAGE_CAPTURE = 10;
     @BindView(R.id.btnSimpan)
     Button btnSimpan;
     @BindView(R.id.koordinatMap)
@@ -48,6 +60,10 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
     CoordinatorLayout salesGeoTagDetail;
     @BindView(R.id.alamatCustomer)
     TextView alamatCustomer;
+    @BindView(R.id.fotoTampakDepan)
+    ImageView fotoTampakDepan;
+    @BindView(R.id.fotoTampakBelakang)
+    ImageView fotoTampakBelakang;
     private GoogleMap sMap;
     private SupportMapFragment mapFragment;
     private LocationManager locationManager;
@@ -57,6 +73,21 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
     private CustomerModel customerModel;
     private int position;
     private Boolean isEdit = false;
+    //Image request code
+    private int PICK_IMAGE_REQUEST = 1;
+    private Boolean takefotodepan = true;
+
+    @OnClick(R.id.fotoTampakBelakang)
+    void fotoBelakangClick() {
+        takefotodepan = false;
+        dialogTAkeImage();
+    }
+
+    @OnClick(R.id.fotoTampakDepan)
+    void fotoDepanClick() {
+        takefotodepan = true;
+        dialogTAkeImage();
+    }
 
     @OnClick(R.id.GetTag)
     void gettag() {
@@ -69,6 +100,100 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
         koordinatMap.setText("");
         Log.d(TAG, "reset: ");
         sMap.clear();
+    }
+
+    private void dialogTAkeImage() {
+        @SuppressLint("ResourceType")
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.alert_upload, null);
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.setCancelable(true);
+        dialogBuilder.setTitle("Upload Foto");
+
+        CardView takePhoto = dialogView.findViewById(R.id.cv_takePhoto);
+        CardView selectPhoto = dialogView.findViewById(R.id.cv_selectPhoto);
+
+        final AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+        alertDialog.setCancelable(true);
+        alertDialog.setCanceledOnTouchOutside(true);
+        takePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dispatchTakePictureIntent();
+                alertDialog.dismiss();
+            }
+        });
+        selectPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFileChooser();
+                alertDialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            if (resultCode == RESULT_OK && null != data) {
+                if (requestCode == PICK_IMAGE_REQUEST) {
+                    Uri selectedImageUri = data.getData();
+                    final String path = getPathFromURI(selectedImageUri);
+                    if (path != null) {
+                        File f = new File(path);
+                        selectedImageUri = Uri.fromFile(f);
+                    }
+                    // Set the image in ImageView
+                    if (takefotodepan) {
+
+                        fotoTampakDepan.setImageURI(selectedImageUri);
+                    }else{
+                        fotoTampakBelakang.setImageURI(selectedImageUri);
+
+                    }
+                } else if (requestCode == REQUEST_IMAGE_CAPTURE) {
+                    Bitmap photo = (Bitmap) data.getExtras().get("data");
+                    Log.d(TAG, "onActivityResult: Bitmap Capture Photo " + photo);
+                    if (takefotodepan) {
+
+                        fotoTampakDepan.setImageBitmap(photo);
+                    }else{
+                        fotoTampakBelakang.setImageBitmap(photo);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Log.e("FileSelectorActivity", "File select error", e);
+        }
+    }
+
+    private void dispatchTakePictureIntent() {
+
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+    }
+
+    //method to show file chooser
+    private void showFileChooser() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    public String getPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor.moveToFirst()) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
     }
 
     @Override
@@ -93,7 +218,7 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
             }
         });
         customerModel = getIntent().getParcelableExtra(EXTRA_DATA);
-        Log.d(TAG, "onCreate: "+customerModel);
+        Log.d(TAG, "onCreate: " + customerModel);
         if (customerModel != null) {
             getSupportActionBar().setTitle("EDIT");
             position = getIntent().getIntExtra(EXTRA_DATA, 0);
@@ -194,7 +319,7 @@ public class SalesGEOTagDetailActivity extends AppCompatActivity implements Loca
                 } else {
                     Optioonns = "SImpan";
                 }
-                Snackbar.make(salesGeoTagDetail, "data loc " + LatLNG+" "+ Optioonns, Snackbar.LENGTH_SHORT)
+                Snackbar.make(salesGeoTagDetail, "data loc " + LatLNG + " " + Optioonns, Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
                 break;
 
