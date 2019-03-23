@@ -159,6 +159,7 @@
                         android:padding="2dp">
 
                         <LinearLayout
+                            android:id="@+id/driverGeoTag"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -314,10 +315,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-
                         android:padding="2dp">
 
                         <LinearLayout
+                            android:id="@+id/driverReviewPengiriman"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
