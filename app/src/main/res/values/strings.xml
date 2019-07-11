@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">APIS</string>
+    <string name="app_name">UNIM HelpDesk</string>
     <string name="name_sales">Name Sales</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -12,10 +12,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_sales_planing_kegiatan">SalesPlaningKegiatanActivity</string>
-    <string name="realisasi_pengiriman">Realisasi Pengiriman</string>
-    <string name="plan_pengiriman">Plan Pengiriman</string>
+    <string name="realisasi_pengiriman">Buat Tiket</string>
+    <string name="plan_pengiriman">List Tiket</string>
     <string name="todo">TODO</string>
-    <string name="geo_tag">Geo Tag</string>
+    <string name="geo_tag">List Article</string>
     <string name="history_pengiriman">History Pengiriman</string>
     <string name="title_activity_realisasi_kegiatan">RealisasiKegiatanActivity</string>
     <string name="search">Search</string>
@@ -71,4 +71,8 @@
     <string name="title_activity_sales_review_update">SalesReviewUpdateActivity</string>
     <string name="title_activity_sales_review_complain">SalesReviewComplainActivity</string>
     <string name="title_activity_driver_review_pengiriman">DriverReviewPengirimanActivity</string>
+    <string name="universitas_islam_majapahit">UNIVERSITAS ISLAM MAJAPAHIT</string>
+    <string name="password">Password</string>
+    <string name="no_account_yet_create_one">No account yet? Create one</string>
+    <string name="title_activity_list_tiket">ListTiketActivity</string>
 </resources>

@@ -8,4 +8,5 @@
     android:textColor="@color/colordasar"
     android:ellipsize="marquee"
     android:textSize="15sp"
+    android:padding="10sp"
     android:textAlignment="inherit"/>

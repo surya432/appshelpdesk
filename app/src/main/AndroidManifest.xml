@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.surya432.apis">
+    package="com.surya432.skripsi">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,164 +15,34 @@
     <application
         android:allowBackup="true"
         android:appComponentFactory="123213"
-        android:icon="@mipmap/ic_louncherap22_round"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_louncherap22_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory">
         <activity
-            android:name=".Activity.Driver.DriverReviewPengirimanActivity"
-            android:label="@string/title_activity_driver_review_pengiriman"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.surya432.apis.MainActivity" />
-        </activity>
+            android:name=".Activity.ListArticleActivity"
+            android:label="List Tiket"
+            android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".Activity.Sales.SalesReviewComplainActivity"
-            android:label="@string/title_activity_sales_review_complain"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.surya432.apis.MainActivity" />
-        </activity>
+            android:name=".Activity.CreateTiketActivity"
+            android:label="Create Tiket"
+            android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".Activity.Sales.SalesReviewUpdateActivity"
-            android:label="@string/title_activity_sales_review_update"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.surya432.apis.MainActivity" />
-        </activity>
-        <activity
-            android:name=".Activity.Sales.SalesReviewKegiatanActivity"
-            android:label="@string/title_activity_sales_review_kegiatan"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.surya432.apis.MainActivity" />
-        </activity>
-        <activity
-            android:name=".Activity.Sales.SalesComplainActivity"
-            android:label="@string/title_activity_sales_complain"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.surya432.apis.MainActivity" />
-        </activity>
-        <activity
-            android:name=".Activity.Sales.SalesUpdateKegiatanActivity"
-            android:label="@string/title_activity_sales_update_kegiatan"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.surya432.apis.MainActivity" />
-        </activity>
-        <activity
-            android:name=".Activity.Sales.SalesJadwalFormActivity"
-            android:label="@string/title_activity_sales_jadwal_form"
-            android:parentActivityName=".Activity.Sales.SalesListCustomerActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.Sales.SalesListCustomerActivity"
-            android:label="@string/title_activity_sales_list_customer"
+            android:name=".Activity.ListTiketActivity"
+            android:label="@string/title_activity_list_tiket"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.Sales.SalesComplainTrackingActivity"
-            android:label="@string/title_activity_sales_complain"
-            android:parentActivityName=".Activity.Sales.SalesListCustomerActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.Sales.SalesAddComplainActivity"
-            android:label="@string/title_activity_sales_add_complain"
-            android:noHistory="true"
-            android:parentActivityName=".Activity.Sales.SalesComplainTrackingActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.Sales.SalesRealisasiCheckActivity"
-            android:label="@string/title_activity_sales_realisasi_check"
-            android:parentActivityName=".Activity.Sales.SalesRealisasiKegiatanActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.surya432.apis.Activity.Sales.SalesRealisasiKegiatanActivity" />
-        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCpxEFwG_S-CV4zIt99YZjlpY1NnvytqdE" />
 
-        <activity
-            android:name=".Activity.Sales.SalesGEOTagDetailActivity"
-            android:label="@string/title_activity_sales_geotag_detail"
-            android:parentActivityName=".Activity.Sales.SalesGEOTagActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.Sales.SalesGEOTagActivity"
-            android:label="@string/title_activity_sales_geotag"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.surya432.apis.MainActivity" />
-        </activity>
-        <activity
-            android:name=".Activity.Driver.DriverRealisasiKegiatanActivity"
-            android:label="@string/title_activity_driver_realisasi_kegiatan"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.surya432.apis.MainActivity" />
-        </activity>
-        <activity
-            android:name=".Activity.Driver.DriverPlaningKegiatanActivity"
-            android:label="@string/title_activity_driver_planing_kegiatan"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.surya432.apis.MainActivity" />
-        </activity>
-        <activity
-            android:name=".Activity.Sales.SalesRealisasiKegiatanActivity"
-            android:label="@string/title_activity_realisasi_kegiatan"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
-        <activity
-            android:name=".Activity.Sales.SalesPlaningKegiatanActivity"
-            android:label="@string/title_activity_sales_planing_kegiatan"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
         <activity android:name=".Activity.SplashScreenActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
-
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+android:paddingLeft="4dp"
+    android:paddingRight="4dp"
+    android:paddingTop="4dp"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardMaxElevation="4dp"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="20dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:clickable="true"
+
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:text="Subject"
+                android:textStyle="bold"
+                android:id="@+id/TvSubject"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="14sp"
+                android:text="Subject"
+                android:id="@+id/tvUpdateAt"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+                <TextView
+                    android:textSize="14sp"
+                    android:text="status"
+                    android:id="@+id/tvStatus"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|center_horizontal|center"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical|center_horizontal|center"
+
+                    android:text="Departement"
+                    android:id="@+id/tvDepartement"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|center_horizontal|center"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:text="Prioritas"
+                    android:id="@+id/tvPrioritas"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
