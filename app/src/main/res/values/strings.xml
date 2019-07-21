@@ -75,4 +75,5 @@
     <string name="password">Password</string>
     <string name="no_account_yet_create_one">No account yet? Create one</string>
     <string name="title_activity_list_tiket">ListTiketActivity</string>
+    <string name="title_activity_detail_tiket">DetailTiketActivity</string>
 </resources>

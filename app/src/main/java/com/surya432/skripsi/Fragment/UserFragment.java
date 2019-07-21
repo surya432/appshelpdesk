@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.surya432.skripsi.Activity.CreateTiketActivity;
 import com.surya432.skripsi.Activity.ListTiketActivity;
 import com.surya432.skripsi.Activity.LoginActivity;
 import com.surya432.skripsi.Helpers.SessionManager;
@@ -28,24 +29,23 @@ public class UserFragment extends Fragment {
     TextView namaPegawai;
     @BindView(R.id.jabatanPegawai)
     TextView jabatanPegawai;
-    @BindView(R.id.PlanKegiatan)
-    LinearLayout PlanKegiatan;
-    @BindView(R.id.salesRealisasi)
-    LinearLayout salesRealisasi;
-    @BindView(R.id.SalesUpdateKegiatan)
-    LinearLayout SalesUpdateKegiatan;
-    @BindView(R.id.SalesComplainList)
-    LinearLayout SalesComplainList;
-    @BindView(R.id.logOut)
-    LinearLayout logOut;
-    @BindView(R.id.salesGeoTag)
+
     LinearLayout salesGeoTag;
     @BindView(R.id.menu)
     CardView menu;
 
     LinearLayout SalesReviewComplain;
-    @BindView(R.id.review)
-    CardView review;
+    @BindView(R.id.ListTiket)
+    LinearLayout listTiket;
+    @BindView(R.id.CreateTiket)
+    LinearLayout createTiket;
+    @BindView(R.id.ListArticle)
+    LinearLayout ListArticle;
+    @BindView(R.id.akun)
+    LinearLayout akun;
+    @BindView(R.id.logOut)
+    LinearLayout logOut;
+
     private Intent intent;
     private SessionManager sessionManager;
 
@@ -75,13 +75,21 @@ public class UserFragment extends Fragment {
         namaPegawai.setText(sessionManager.getName());
         profileImage.setImageBitmap(ToolUtil.Base64ToBitmap(sessionManager.getAvatar()));
         jabatanPegawai.setText(sessionManager.getRole());
-        PlanKegiatan.setOnClickListener(new View.OnClickListener() {
+        listTiket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(getContext(), ListTiketActivity.class);
                 getContext().startActivity(intent);
             }
         });
+        createTiket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getContext(), CreateTiketActivity.class);
+                getContext().startActivity(intent);
+            }
+        });
+
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

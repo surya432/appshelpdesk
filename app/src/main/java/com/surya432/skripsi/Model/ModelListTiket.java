@@ -1,5 +1,8 @@
 package com.surya432.skripsi.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 public class ModelListTiket {
@@ -38,7 +41,7 @@ public class ModelListTiket {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Parcelable {
         /**
          * id : 10
          * subject : sdasd
@@ -61,7 +64,7 @@ public class ModelListTiket {
         private int prioritas_id;
         private int status_id;
         private int departement_id;
-        private Object rate;
+        private int rate;
         private String created_at;
         private String updated_at;
         private String userName;
@@ -117,11 +120,11 @@ public class ModelListTiket {
             this.departement_id = departement_id;
         }
 
-        public Object getRate() {
+        public int getRate() {
             return rate;
         }
 
-        public void setRate(Object rate) {
+        public void setRate(int rate) {
             this.rate = rate;
         }
 
@@ -172,5 +175,58 @@ public class ModelListTiket {
         public void setStatusName(String statusName) {
             this.statusName = statusName;
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(this.id);
+            dest.writeString(this.subject);
+            dest.writeInt(this.user_id);
+            dest.writeInt(this.prioritas_id);
+            dest.writeInt(this.status_id);
+            dest.writeInt(this.departement_id);
+            dest.writeInt(this.rate);
+            dest.writeString(this.created_at);
+            dest.writeString(this.updated_at);
+            dest.writeString(this.userName);
+            dest.writeString(this.prioritasName);
+            dest.writeString(this.departementName);
+            dest.writeString(this.statusName);
+        }
+
+        public DataBean() {
+        }
+
+        protected DataBean(Parcel in) {
+            this.id = in.readInt();
+            this.subject = in.readString();
+            this.user_id = in.readInt();
+            this.prioritas_id = in.readInt();
+            this.status_id = in.readInt();
+            this.departement_id = in.readInt();
+            this.rate = in.readInt();
+            this.created_at = in.readString();
+            this.updated_at = in.readString();
+            this.userName = in.readString();
+            this.prioritasName = in.readString();
+            this.departementName = in.readString();
+            this.statusName = in.readString();
+        }
+
+        public static final Parcelable.Creator<DataBean> CREATOR = new Parcelable.Creator<DataBean>() {
+            @Override
+            public DataBean createFromParcel(Parcel source) {
+                return new DataBean(source);
+            }
+
+            @Override
+            public DataBean[] newArray(int size) {
+                return new DataBean[size];
+            }
+        };
     }
 }

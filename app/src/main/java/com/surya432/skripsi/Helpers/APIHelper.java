@@ -23,7 +23,6 @@ public class APIHelper {
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     context.startActivity(intent);
                 }else {
-                    Log.d("APIHelper", "reached onFinalResponse");
                     callback.onResponse(call, response);
                 }
             }

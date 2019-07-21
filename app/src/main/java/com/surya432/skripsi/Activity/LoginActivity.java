@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             APIHelper.enqueueWithRetry(getApplicationContext(),call, new Callback<ModelLogin>() {
                 @Override
                 public void onResponse(Call<ModelLogin> call, Response<ModelLogin> response) {
-                    if (response.isSuccessful() && response.body().getStatus().equals("success")) {
+                    if (response.body().getStatus().equals("success")) {
                         ModelLogin.DataBean dataLogin = response.body().getData();
                         ModelLogin.DataBean.AvatarBean avatar = dataLogin.getAvatar();
                         String[] Base64Avatar = avatar.getEncoded().split(",");

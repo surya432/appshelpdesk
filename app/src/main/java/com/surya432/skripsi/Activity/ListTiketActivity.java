@@ -2,12 +2,13 @@ package com.surya432.skripsi.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.surya432.skripsi.API.RestApi;
@@ -36,9 +37,13 @@ public class ListTiketActivity extends AppCompatActivity {
     RecyclerView listItem;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    Handler handler = new Handler();
     private RestApi restApi;
     private SessionManager sessionManager;
     private Intent intent;
+    private int dataCount = 0;
+    private Boolean runable = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +72,7 @@ public class ListTiketActivity extends AppCompatActivity {
         sessionManager = new SessionManager(getApplicationContext());
         restApi = RetrofitClient.getClient().create(RestApi.class);
         setupListTiket();
+        runad();
 
     }
 
@@ -78,35 +84,74 @@ public class ListTiketActivity extends AppCompatActivity {
             APIHelper.enqueueWithRetry(getApplicationContext(), call, new Callback<ModelListTiket>() {
                 @Override
                 public void onResponse(Call<ModelListTiket> call, Response<ModelListTiket> response) {
-                    int dataCount = response.body().getData().size() < 1 ? response.body().getData().size() : 0;
-                    if (!response.isSuccessful() ) {
+                    dataCount = response.body().getData().size() >= 1 ? response.body().getData().size() : 0;
+                    Log.e("datacount", "onResponse: datacount" + dataCount);
+                    if (!response.isSuccessful() || dataCount < 1) {
                         listItem.setVisibility(View.GONE);
                         ToolUtil.BuildAlertDialog(ListTiketActivity.this, "Data Kosong");
                     } else {
-                        LinearLayoutManager llm = new LinearLayoutManager(ListTiketActivity.this);
-                        llm.setOrientation(LinearLayoutManager.VERTICAL);
-                        listItem.setLayoutManager(llm);
-                        listItem.setHasFixedSize(true);
-                        listItem.setAdapter(null);
-                        listItem.setVisibility(View.VISIBLE);
-                        List<ModelListTiket.DataBean> dataBeans = response.body().getData();
-                        AdapterListTiket adapterListTiket = new AdapterListTiket(getApplicationContext(), dataBeans);
-                        listItem.setAdapter(adapterListTiket);
+                        if (dataCount >= 1) {
+                            runable = true;
+                            List<ModelListTiket.DataBean> dataBeans = response.body().getData();
+                            LinearLayoutManager llm = new LinearLayoutManager(ListTiketActivity.this);
+                            llm.setOrientation(LinearLayoutManager.VERTICAL);
+                            listItem.setLayoutManager(llm);
+                            listItem.setHasFixedSize(true);
+                            listItem.setAdapter(null);
+                            listItem.setVisibility(View.VISIBLE);
+                            AdapterListTiket adapterListTiket = new AdapterListTiket(getApplicationContext(), dataBeans);
+                            listItem.setAdapter(adapterListTiket);
+                        } else {
+                            ToolUtil.BuildAlertDialog(ListTiketActivity.this, "Data Kosong");
+                        }
+
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ModelListTiket> call, Throwable t) {
                     listItem.setVisibility(View.GONE);
+                    handler.removeCallbacksAndMessages(null);
                     ToolUtil.BuildAlertDialog(getApplicationContext(), t.getMessage());
                 }
             });
+
         }
+    }
+
+    private void runad() {
+        if (dataCount >= 1) {
+            Log.e("runad", "onResponse: " + "enavle");
+
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    //do something
+                    handler.postDelayed(this, 5000);
+                    setupListTiket();
+
+                }
+            }, 10000);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        handler.removeCallbacksAndMessages(null);
+
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
+        handler.removeCallbacksAndMessages(null);
+
     }
 }

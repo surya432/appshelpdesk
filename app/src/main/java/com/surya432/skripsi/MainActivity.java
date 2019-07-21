@@ -2,8 +2,8 @@ package com.surya432.skripsi;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,8 +15,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.surya432.skripsi.Activity.LoginActivity;
 import com.surya432.skripsi.Fragment.AdminFragment;
@@ -26,7 +28,6 @@ import com.surya432.skripsi.Fragment.MyPlanFragment;
 import com.surya432.skripsi.Fragment.UserFragment;
 import com.surya432.skripsi.Helpers.NetworkManager;
 import com.surya432.skripsi.Helpers.SessionManager;
-import com.surya432.skripsi.Helpers.ToolUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,6 +36,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.menubar)
     ImageView menubar;
+    @BindView(R.id.tvVersion)
+    TextView tvVersion;
+    @BindView(R.id.linearLayout)
+    LinearLayout linearLayout;
+    @BindView(R.id.TopBar)
+    ConstraintLayout TopBar;
+    @BindView(R.id.frame_container)
+    FrameLayout frameContainer;
+    @BindView(R.id.nav_view)
+    NavigationView navView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
     private String versionName = BuildConfig.VERSION_NAME;
     private SessionManager sessionManager;
     private UserFragment userFragment;
@@ -45,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void firstTime() {
         checkInetSession();
-
+        tvVersion.setText("Version" + BuildConfig.VERSION_NAME);
     }
 
     @Override
@@ -222,7 +235,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();
     }
-
 
 
 }

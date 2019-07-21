@@ -35,6 +35,7 @@
                         android:gravity="left">
 
                         <ImageView
+                            android:visibility="gone"
                             android:id="@+id/menubar"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
@@ -58,13 +59,18 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:layout_gravity="center"
                         android:gravity="right">
 
-                        <ImageView
-                            android:visibility="gone"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_icon09" />
+                        <TextView
+                            android:id="@+id/tvVersion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="#ffff"
+                            android:padding="5dp"
+                            android:text="asd"
+                            android:textAlignment="center" />
                     </LinearLayout>
                 </LinearLayout>
 

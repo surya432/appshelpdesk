@@ -7,13 +7,10 @@
 
     tools:context=".Fragment.UserFragment">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
+            android:layout_marginTop="10dp"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_alignParentTop="true"
@@ -29,6 +26,7 @@
             android:id="@+id/namaPegawai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-medium"
             android:text="Name Karyawan"
@@ -36,12 +34,13 @@
             android:textColor="#fff"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+            android:layout_below="@+id/profile_image" />
 
         <TextView
             android:id="@+id/jabatanPegawai"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
@@ -52,9 +51,7 @@
             android:textColor="#3C33FF"
             android:textSize="12sp"
             android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaPegawai" />
+            android:layout_below="@+id/namaPegawai"/>
 
         <android.support.v7.widget.CardView
             android:id="@+id/menu"
@@ -64,9 +61,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/jabatanPegawai">
+            android:layout_below="@+id/jabatanPegawai">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,6 +78,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Menu Admin"
+                        android:padding="5dp"
+
                         android:textColor="#000"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -104,6 +101,7 @@
 
                         <LinearLayout
                             android:id="@+id/ListTiket"
+                            android:padding="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -133,12 +131,12 @@
                         <LinearLayout
                             android:id="@+id/CreateTiket"
                             android:layout_width="match_parent"
+                            android:padding="5dp"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="match_parent"
-
                                 android:layout_height="50dp"
                                 android:padding="5dp"
                                 android:src="@drawable/ic_contact_support"
@@ -161,6 +159,7 @@
 
                         <LinearLayout
                             android:id="@+id/ListArticle"
+                            android:padding="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -197,6 +196,7 @@
 
                         <LinearLayout
                             android:id="@+id/akun"
+                            android:padding="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -224,6 +224,7 @@
 
                         <LinearLayout
                             android:id="@+id/logOut"
+                            android:padding="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -282,9 +283,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/review"
             tools:layout_editor_absoluteX="0dp"/>
-    </android.support.constraint.ConstraintLayout>
 
 
 </RelativeLayout>
