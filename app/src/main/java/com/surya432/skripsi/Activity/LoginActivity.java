@@ -50,10 +50,10 @@ public class LoginActivity extends AppCompatActivity {
             ToolUtil.BuildAlertDialog(LoginActivity.this, "Password Harus Di isi");
         }else{
             Call<ModelLogin> call = restApi.doLogin(input_username.getText().toString(), input_password.getText().toString());
-            APIHelper.enqueueWithRetry(getApplicationContext(),call, new Callback<ModelLogin>() {
+            call.enqueue(new Callback<ModelLogin>() {
                 @Override
                 public void onResponse(Call<ModelLogin> call, Response<ModelLogin> response) {
-                    if (response.body().getStatus().equals("success")) {
+                    if (response.isSuccessful()) {
                         ModelLogin.DataBean dataLogin = response.body().getData();
                         ModelLogin.DataBean.AvatarBean avatar = dataLogin.getAvatar();
                         String[] Base64Avatar = avatar.getEncoded().split(",");
@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                     ToolUtil.BuildAlertDialog(LoginActivity.this, t.getMessage());
                 }
             });
+
         }
 
     }

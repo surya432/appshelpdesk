@@ -2,6 +2,7 @@ package com.surya432.skripsi.Helpers;
 
 import android.util.Log;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.surya432.skripsi.BuildConfig;
 
 import java.util.concurrent.TimeUnit;
@@ -16,28 +17,30 @@ public class RetrofitClient {
     private static final String TAG = RetrofitClient.class.getSimpleName();
     private static Retrofit retrofit = null;
     public static Retrofit getClient() {
-        String BASE_URL = BuildConfig.BASEURL;
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-            @Override
-            public void log(String message) {
-                Log.d(TAG, "log: OKHTTP:" + message);
-            }
-        });
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .writeTimeout(300, TimeUnit.SECONDS)
-                .readTimeout(300, TimeUnit.SECONDS)
-                .connectTimeout(300, TimeUnit.SECONDS)
-                .build();
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                //.addConverterFactory(SimpleXmlConverterFactory.create())
-                .client(client)
-                .build();
-
+        if (retrofit == null) {
+            String BASE_URL = BuildConfig.BASEURL;
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+                @Override
+                public void log(String message) {
+                    Log.d(TAG, "log: OKHTTP:" + message);
+                }
+            });
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(interceptor)
+                    .writeTimeout(300, TimeUnit.SECONDS)
+                    .readTimeout(300, TimeUnit.SECONDS)
+                    .connectTimeout(300, TimeUnit.SECONDS)
+                    .build();
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(ScalarsConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    //.addConverterFactory(SimpleXmlConverterFactory.create())
+                    .client(client)
+                    .build();
+        }
         return retrofit;
     }
 }

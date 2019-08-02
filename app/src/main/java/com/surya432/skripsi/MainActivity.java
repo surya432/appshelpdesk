@@ -28,6 +28,7 @@ import com.surya432.skripsi.Fragment.MyPlanFragment;
 import com.surya432.skripsi.Fragment.UserFragment;
 import com.surya432.skripsi.Helpers.NetworkManager;
 import com.surya432.skripsi.Helpers.SessionManager;
+import com.surya432.skripsi.Service.FirebaseFCM;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 finish();
             } else {
+                Log.d(TAG, "Refreshed token: " + FirebaseFCM.getToken(MainActivity.this));
                 adminFragment = new AdminFragment();
                 userFragment = new UserFragment();
                 nav_myPlan = new MyPlanFragment();

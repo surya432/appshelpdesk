@@ -1,11 +1,12 @@
 package com.surya432.skripsi.Service;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-public class FirebaseFCM extends FirebaseMessagingService {
+public class FirebaseFCM extends FirebaseMessagingService  {
     private static final String TAG = FirebaseFCM.class.getSimpleName();
 
     public FirebaseFCM() {
@@ -45,10 +46,9 @@ public class FirebaseFCM extends FirebaseMessagingService {
     @Override
     public void onNewToken(String token) {
         Log.d(TAG, "Refreshed token: " + token);
-
-        // If you want to send messages to this application instance or
-        // manage this apps subscriptions on the server side, send the
-        // Instance ID token to your app server.
-        //sendRegistrationToServer(token);
+        getSharedPreferences("_", MODE_PRIVATE).edit().putString("token", token).apply();
+    }
+    public static String getToken(Context context) {
+        return context.getSharedPreferences("_", MODE_PRIVATE).getString("token", "");
     }
 }

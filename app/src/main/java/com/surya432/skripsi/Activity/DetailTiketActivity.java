@@ -135,6 +135,7 @@ public class DetailTiketActivity extends AppCompatActivity {
             ToolUtil.BuildAlertDialog(DetailTiketActivity.this, "Koneksi Internet Tidak Ada");
         } else {
             Call<ModelContentTiket> call = restApi.doGetContentTiket("tiketContent", String.valueOf(m.getId()), sessionManager.getToken() + "");
+
             APIHelper.enqueueWithRetry(getApplicationContext(), call, new Callback<ModelContentTiket>() {
                 @Override
                 public void onResponse(Call<ModelContentTiket> call, Response<ModelContentTiket> response) {
