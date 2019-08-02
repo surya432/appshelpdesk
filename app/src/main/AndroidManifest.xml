@@ -27,6 +27,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory">
+        <service android:name=".Service.FirebaseFCM">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <activity
             android:name=".Activity.DetailTiketActivity"
             android:label="@string/title_activity_detail_tiket"
