@@ -52,7 +52,6 @@ public class AdapterArtikel extends RecyclerView.Adapter<AdapterArtikel.MyViewHo
                 intent.putExtra("Data", m);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
-
             }
         });
     }

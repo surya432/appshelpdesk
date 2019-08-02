@@ -1,5 +1,6 @@
 package com.surya432.skripsi.API;
 
+import com.surya432.skripsi.Model.ModelArtikel;
 import com.surya432.skripsi.Model.ModelContentTiket;
 import com.surya432.skripsi.Model.ModelCreateTiket;
 import com.surya432.skripsi.Model.ModelListTiket;
@@ -28,7 +29,9 @@ public interface RestApi {
     @FormUrlEncoded
     @POST("master")
     Call<ModelListTiket> doGetListTiket(@Field("TableName") String TableName, @Header("Authorization") String authHeader);
-
+    @FormUrlEncoded
+    @POST("master")
+    Call<ModelArtikel> doGetListArtikel(@Field("TableName") String TableName, @Header("Authorization") String authHeader);
     @FormUrlEncoded
     @POST("master")
     Call<ModelStatus> doGetMasterStatus(@Field("TableName") String TableName, @Header("Authorization") String authHeader);

@@ -1,16 +1,16 @@
 package com.surya432.skripsi.Activity;
 
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +26,6 @@ import com.surya432.skripsi.Helpers.RetrofitClient;
 import com.surya432.skripsi.Helpers.SessionManager;
 import com.surya432.skripsi.Helpers.ToolUtil;
 import com.surya432.skripsi.Model.ModelContentTiket;
-import com.surya432.skripsi.Model.ModelCreateTiket;
 import com.surya432.skripsi.Model.ModelListTiket;
 import com.surya432.skripsi.R;
 
@@ -71,6 +70,14 @@ public class DetailTiketActivity extends AppCompatActivity {
     private ArrayList<Uri> arrayList = new ArrayList<>();
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Membaca file menu dan menambahkan isinya ke action bar jika ada.
+        getMenuInflater().inflate(R.menu.menu_detail_tiket, menu);
+        return true;
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_tiket);
@@ -82,7 +89,7 @@ public class DetailTiketActivity extends AppCompatActivity {
         if (getIntent().hasExtra("Data")) {
             m = getIntent().getParcelableExtra("Data");
             //ToolUtil.BuildAlertDialog(DetailTiketActivity.this, m.getId()+"");
-            getSupportActionBar().setTitle(m.getSubject().toString());
+            getSupportActionBar().setTitle(m.getSubject());
             firstLoad();
         } else {
             finish();
@@ -222,7 +229,7 @@ public class DetailTiketActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(@NonNull Call<ModelContentTiket> call, @NonNull Throwable t) {
-                   // ToolUtil.BuildAlertDialog(DetailTiketActivity.this, t.getMessage());
+                    // ToolUtil.BuildAlertDialog(DetailTiketActivity.this, t.getMessage());
                     buttonChatboxSend.setEnabled(true);
                 }
             });
@@ -250,5 +257,12 @@ public class DetailTiketActivity extends AppCompatActivity {
                 );
         // MultipartBody.Part is used to send also the actual file name
         return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
+    }
+
+    public void onComposeAction(MenuItem item) {
+
+    }
+
+    public void onClosedTiket(MenuItem item) {
     }
 }

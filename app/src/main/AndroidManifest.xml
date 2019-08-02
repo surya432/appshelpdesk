@@ -32,11 +32,15 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".Activity.DetailArtikelActivity"
+            android:label="@string/title_activity_detail_artikel"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Activity.DetailTiketActivity"
             android:label="@string/title_activity_detail_tiket"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name="com.ipaulpro.afilechooser.FileChooserActivity"
             android:enabled="@bool/use_activity"

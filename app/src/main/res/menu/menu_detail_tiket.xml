@@ -5,12 +5,12 @@
         android:id="@+id/item1"
         android:icon="@drawable/ic_action_attachment"
         android:onClick="onComposeAction"
-        android:title="Attachment"
+        android:title="@string/attachment"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/item2"
         android:icon="@drawable/ic_action_closed"
         android:onClick="onClosedTiket"
-        android:title="Close Tiket"
+        android:title="@string/close_tiket"
         app:showAsAction="ifRoom" />
 </menu>

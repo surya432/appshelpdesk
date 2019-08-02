@@ -84,27 +84,32 @@ public class ListTiketActivity extends AppCompatActivity {
             APIHelper.enqueueWithRetry(getApplicationContext(), call, new Callback<ModelListTiket>() {
                 @Override
                 public void onResponse(Call<ModelListTiket> call, Response<ModelListTiket> response) {
-                    dataCount = response.body().getData().size() >= 1 ? response.body().getData().size() : 0;
-                    Log.e("datacount", "onResponse: datacount" + dataCount);
-                    if (!response.isSuccessful() || dataCount < 1) {
-                        listItem.setVisibility(View.GONE);
-                        ToolUtil.BuildAlertDialog(ListTiketActivity.this, "Data Kosong");
-                    } else {
-                        if (dataCount >= 1) {
-                            runable = true;
-                            List<ModelListTiket.DataBean> dataBeans = response.body().getData();
-                            LinearLayoutManager llm = new LinearLayoutManager(ListTiketActivity.this);
-                            llm.setOrientation(LinearLayoutManager.VERTICAL);
-                            listItem.setLayoutManager(llm);
-                            listItem.setHasFixedSize(true);
-                            listItem.setAdapter(null);
-                            listItem.setVisibility(View.VISIBLE);
-                            AdapterListTiket adapterListTiket = new AdapterListTiket(getApplicationContext(), dataBeans);
-                            listItem.setAdapter(adapterListTiket);
-                        } else {
-                            ToolUtil.BuildAlertDialog(ListTiketActivity.this, "Data Kosong");
-                        }
+                    try {
 
+                        if (!response.isSuccessful()) {
+                            listItem.setVisibility(View.GONE);
+                            ToolUtil.BuildAlertDialog(ListTiketActivity.this, "Data Kosong");
+                        } else {
+                            dataCount = response.body().getData().size() > 0 ? response.body().getData().size() : 0;
+                            Log.e("datacount", "onResponse: datacount" + dataCount);
+                            if (dataCount > 0) {
+                                runable = true;
+                                List<ModelListTiket.DataBean> dataBeans = response.body().getData();
+                                LinearLayoutManager llm = new LinearLayoutManager(ListTiketActivity.this);
+                                llm.setOrientation(LinearLayoutManager.VERTICAL);
+                                listItem.setLayoutManager(llm);
+                                listItem.setHasFixedSize(true);
+                                listItem.setAdapter(null);
+                                listItem.setVisibility(View.VISIBLE);
+                                AdapterListTiket adapterListTiket = new AdapterListTiket(getApplicationContext(), dataBeans);
+                                listItem.setAdapter(adapterListTiket);
+                            } else {
+                                ToolUtil.BuildAlertDialog(ListTiketActivity.this, "Data Kosong");
+                            }
+
+                        }
+                    } catch (Exception e) {
+                        ToolUtil.BuildAlertDialog(ListTiketActivity.this, "Error Koneksi "+e.getMessage());
                     }
                 }
 

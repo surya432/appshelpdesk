@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.surya432.skripsi.Activity.CreateTiketActivity;
+import com.surya432.skripsi.Activity.ListArticleActivity;
 import com.surya432.skripsi.Activity.ListTiketActivity;
 import com.surya432.skripsi.Activity.LoginActivity;
 import com.surya432.skripsi.Helpers.SessionManager;
@@ -79,7 +80,16 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 intent = new Intent(getContext(), ListTiketActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getContext().startActivity(intent);
+            }
+        });
+        ListArticle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getContext(), ListArticleActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
         createTiket.setOnClickListener(new View.OnClickListener() {
