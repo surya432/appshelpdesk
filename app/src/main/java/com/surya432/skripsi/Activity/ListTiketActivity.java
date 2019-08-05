@@ -131,7 +131,7 @@ public class ListTiketActivity extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 public void run() {
                     //do something
-                    handler.postDelayed(this, 5000);
+                    handler.postDelayed(this, 50000);
                     setupListTiket();
 
                 }

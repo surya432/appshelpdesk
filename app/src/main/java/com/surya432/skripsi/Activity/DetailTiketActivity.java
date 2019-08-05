@@ -1,8 +1,11 @@
 package com.surya432.skripsi.Activity;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,11 +17,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.ipaulpro.afilechooser.utils.FileUtils;
 import com.surya432.skripsi.API.RestApi;
+import com.surya432.skripsi.Adapter.AdapterFile;
 import com.surya432.skripsi.Adapter.MessageListAdapter;
 import com.surya432.skripsi.Helpers.APIHelper;
 import com.surya432.skripsi.Helpers.NetworkManager;
@@ -26,7 +32,9 @@ import com.surya432.skripsi.Helpers.RetrofitClient;
 import com.surya432.skripsi.Helpers.SessionManager;
 import com.surya432.skripsi.Helpers.ToolUtil;
 import com.surya432.skripsi.Model.ModelContentTiket;
+import com.surya432.skripsi.Model.ModelCreateTiket;
 import com.surya432.skripsi.Model.ModelListTiket;
+import com.surya432.skripsi.Model.ModelTiket;
 import com.surya432.skripsi.R;
 
 import java.io.File;
@@ -47,6 +55,8 @@ import retrofit2.Response;
 
 public class DetailTiketActivity extends AppCompatActivity {
 
+    static final int PICK_IMAGE_REQUEST = 12;
+    private static final String TAG = DetailTiketActivity.class.getSimpleName();
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.reyclerview_message_list)
@@ -63,9 +73,14 @@ public class DetailTiketActivity extends AppCompatActivity {
     ProgressBar progressbar;
     Handler handler = new Handler();
     int delay = 5000; //milliseconds
+    @BindView(R.id.listView)
+    ListView listView;
+    @BindView(R.id.attachment)
+    ImageButton attachment;
     private ModelListTiket.DataBean m;
     private SessionManager sessionManager;
     private RestApi restApi;
+    private String idTiket = "";
     private int dataCount = 0;
     private ArrayList<Uri> arrayList = new ArrayList<>();
 
@@ -76,7 +91,6 @@ public class DetailTiketActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,11 +99,15 @@ public class DetailTiketActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setTitle("Chating");
         if (getIntent().hasExtra("Data")) {
             m = getIntent().getParcelableExtra("Data");
             //ToolUtil.BuildAlertDialog(DetailTiketActivity.this, m.getId()+"");
-            getSupportActionBar().setTitle(m.getSubject());
+            idTiket = String.valueOf(m.getId());
+            firstLoad();
+        } else if (getIntent().hasExtra("DATAFCM")) {
+            idTiket = getIntent().getStringExtra("DATAFCM");
+            Log.e(TAG, "onCreate: " + idTiket);
             firstLoad();
         } else {
             finish();
@@ -100,12 +118,18 @@ public class DetailTiketActivity extends AppCompatActivity {
     private void firstLoad() {
         sessionManager = new SessionManager(getApplicationContext());
         restApi = RetrofitClient.getClient().create(RestApi.class);
+        attachment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showChooser();
+            }
+        });
         setupListTiket();
         if (dataCount >= 1) {
             handler.postDelayed(new Runnable() {
                 public void run() {
                     //do something
-                    handler.postDelayed(this, 3000);
+                    handler.postDelayed(this, 5000);
                     setupListTiket();
                 }
             }, 5000);
@@ -134,8 +158,7 @@ public class DetailTiketActivity extends AppCompatActivity {
         if (!NetworkManager.isNetworkAvaliable(getApplicationContext())) {
             ToolUtil.BuildAlertDialog(DetailTiketActivity.this, "Koneksi Internet Tidak Ada");
         } else {
-            Call<ModelContentTiket> call = restApi.doGetContentTiket("tiketContent", String.valueOf(m.getId()), sessionManager.getToken() + "");
-
+            Call<ModelContentTiket> call = restApi.doGetContentTiket("tiketContent", String.valueOf(idTiket), sessionManager.getToken() + "");
             APIHelper.enqueueWithRetry(getApplicationContext(), call, new Callback<ModelContentTiket>() {
                 @Override
                 public void onResponse(Call<ModelContentTiket> call, Response<ModelContentTiket> response) {
@@ -220,6 +243,9 @@ public class DetailTiketActivity extends AppCompatActivity {
                             reyclerviewMessageList.setHasFixedSize(true);
                             reyclerviewMessageList.setAdapter(null);
                             reyclerviewMessageList.setVisibility(View.VISIBLE);
+                            listView.setVisibility(View.GONE);
+                            listView.setAdapter(null);
+                            arrayList.clear();
                             List<ModelContentTiket.DataBean> dataBeans = response.body().getData();
                             MessageListAdapter adapterListTiket = new MessageListAdapter(getApplicationContext(), dataBeans);
                             reyclerviewMessageList.setAdapter(adapterListTiket);
@@ -242,7 +268,7 @@ public class DetailTiketActivity extends AppCompatActivity {
     @NonNull
     private RequestBody createPartFromString(String descriptionString) {
         return RequestBody.create(
-                okhttp3.MultipartBody.FORM, descriptionString);
+                MultipartBody.FORM, descriptionString);
     }
 
     @NonNull
@@ -265,5 +291,84 @@ public class DetailTiketActivity extends AppCompatActivity {
     }
 
     public void onClosedTiket(MenuItem item) {
+        Call<ModelCreateTiket> call = restApi.doClosedTiket("closedTiket", "2", idTiket, sessionManager.getToken());
+        APIHelper.enqueueWithRetry(DetailTiketActivity.this, call, new Callback<ModelCreateTiket>() {
+            @Override
+            public void onResponse(Call<ModelCreateTiket> call, Response<ModelCreateTiket> response) {
+                if (!response.isSuccessful()) {
+                    ToolUtil.BuildAlertDialog(DetailTiketActivity.this,"Terjadi Kesalahan.");
+                }else{
+                    ToolUtil.BuildAlertDialog(DetailTiketActivity.this,"Berhasil Di Simpan");
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ModelCreateTiket> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void showChooser() {
+        // Use the GET_CONTENT intent from the utility class
+        Intent target = FileUtils.createGetContentIntent();
+        // Create the chooser Intent
+        Intent intent = Intent.createChooser(
+                target, "Pilih File");
+        try {
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        } catch (ActivityNotFoundException e) {
+            // The reason for the existence of aFileChooser
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case PICK_IMAGE_REQUEST:
+                // If the file selection was successful
+                if (resultCode == RESULT_OK) {
+                    if (data.getClipData() != null) {
+                        int count = data.getClipData().getItemCount();
+                        int currentItem = 0;
+                        while (currentItem < count) {
+                            Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
+                            //do something with the image (save it to some directory or whatever you need to do with it here)
+                            currentItem = currentItem + 1;
+                            Log.d("Uri Selected", imageUri.toString());
+                            try {
+                                // Get the file path from the URI
+                                String path = FileUtils.getPath(DetailTiketActivity.this, imageUri);
+                                Log.d("Multiple File Selected", path);
+                                arrayList.add(imageUri);
+
+                                listView.setVisibility(View.VISIBLE);
+                                AdapterFile mAdapter = new AdapterFile(DetailTiketActivity.this, arrayList);
+                                listView.setAdapter(mAdapter);
+                            } catch (Exception e) {
+                                Log.e(TAG, "File select error", e);
+                            }
+                        }
+                    } else if (data.getData() != null) {
+                        //do something with the image (save it to some directory or whatever you need to do with it here)
+                        final Uri uri = data.getData();
+                        Log.i(TAG, "Uri = " + uri.toString());
+                        try {
+                            // Get the file path from the URI
+                            final String path = FileUtils.getPath(DetailTiketActivity.this, uri);
+                            Log.d("Single File Selected", path);
+                            arrayList.add(uri);
+                            listView.setVisibility(View.VISIBLE);
+                            AdapterFile mAdapter = new AdapterFile(DetailTiketActivity.this, arrayList);
+                            listView.setAdapter(mAdapter);
+                        } catch (Exception e) {
+                            Log.e(TAG, "File select error", e);
+                        }
+                    }
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
