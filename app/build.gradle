@@ -12,7 +12,8 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField("String", "GOOGLE_MAPS_API_KEY", "\"AIzaSyCpxEFwG_S-CV4zIt99YZjlpY1NnvytqdE\"")
-        buildConfigField("String", "BASEURL", "\"http://40.113.217.81/unimhelpdesk/public/api/\"")
+        buildConfigField("String", "BASEURL", "\"http://40.113.217.81/api/\"")
+        //buildConfigField("String", "BASEURL", "\"http://helpdesk.nontonindrama.com/api/\"")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     compileOptions {

@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 finish();
             } else {
-                Log.d(TAG, "Refreshed token: " + FirebaseFCM.getToken(MainActivity.this));
+                Log.d(TAG, "Refreshed token: " + FirebaseFCM.cekToken(MainActivity.this, sessionManager.getToken(),sessionManager.getId()));
                 adminFragment = new AdminFragment();
                 userFragment = new UserFragment();
                 nav_myPlan = new MyPlanFragment();

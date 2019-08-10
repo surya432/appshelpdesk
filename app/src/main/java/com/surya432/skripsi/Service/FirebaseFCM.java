@@ -15,11 +15,18 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.surya432.skripsi.API.RestApi;
 import com.surya432.skripsi.Activity.DetailTiketActivity;
+import com.surya432.skripsi.Helpers.APIHelper;
+import com.surya432.skripsi.Helpers.RetrofitClient;
 import com.surya432.skripsi.R;
 
 import java.util.Map;
 import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FirebaseFCM extends FirebaseMessagingService {
     private static final String TAG = FirebaseFCM.class.getSimpleName();
@@ -33,6 +40,25 @@ public class FirebaseFCM extends FirebaseMessagingService {
         return context.getSharedPreferences("_", MODE_PRIVATE).getString("token", "");
     }
 
+    public static String cekToken(Context context, String auth, String id) {
+        String token = context.getSharedPreferences("_", MODE_PRIVATE).getString("token", "");
+        RestApi restApi = RetrofitClient.getClient().create(RestApi.class);
+        Call<String> call = restApi.doCheckTokenFCM("TokenFCM", id, auth + "", token);
+        APIHelper.enqueueWithRetry(context, call, new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.e(TAG, "onResponse: " + response.body());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                call.cancel();
+                Log.e(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+        return token;
+    }
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // ...
@@ -44,7 +70,11 @@ public class FirebaseFCM extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-
+            Map<String, String> data = remoteMessage.getData();
+            String idTiket = data.get("DATAFCM");
+            String title = "Pesan Masuk Diterima";
+            String body = data.get("repply");
+            showNotification(title, body, idTiket);
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
                 // scheduleJob();
@@ -59,8 +89,10 @@ public class FirebaseFCM extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
             Map<String, String> data = remoteMessage.getData();
-            String idTiket = data.get("DATAFCM").toString();
-            showNotification(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody(),idTiket);
+            String idTiket = data.get("DataFCM");
+            String title = "Pesan Masuk Diterima";
+            String body = data.get("repply");
+            showNotification(title, body, idTiket);
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -68,10 +100,9 @@ public class FirebaseFCM extends FirebaseMessagingService {
     }
 
 
-
     @Override
     public void onNewToken(String token) {
-        Log.d(TAG, "Refreshed token: " + token);
+        //Log.d(TAG, "Refreshed token: " + token);
         getSharedPreferences("_", MODE_PRIVATE).edit().putString("token", token).apply();
     }
 

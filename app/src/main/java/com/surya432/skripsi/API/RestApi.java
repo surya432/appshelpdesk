@@ -33,10 +33,12 @@ public interface RestApi {
     @FormUrlEncoded
     @POST("master")
     Call<ModelListTiket> doGetListTiket(@Field("TableName") String TableName, @Header("Authorization") String authHeader);
+
     @Headers({"Accept: application/json"})
     @FormUrlEncoded
     @POST("master")
     Call<ModelArtikel> doGetListArtikel(@Field("TableName") String TableName, @Header("Authorization") String authHeader);
+
     @Headers({"Accept: application/json"})
     @FormUrlEncoded
     @POST("master")
@@ -51,6 +53,7 @@ public interface RestApi {
     @Multipart
     @POST("reply")
     Call<ModelContentTiket> doPostReplyTiket(@PartMap() Map<String, RequestBody> partMap, @Part List<MultipartBody.Part> files, @Header("Authorization") String authHeader);
+
     @Headers({"Accept: application/json"})
     @FormUrlEncoded
     @POST("closedTiket")
@@ -60,4 +63,9 @@ public interface RestApi {
     @FormUrlEncoded
     @POST("master")
     Call<ModelContentTiket> doGetContentTiket(@Field("TableName") String TableName, @Field("tiketId") String id, @Header("Authorization") String authHeader);
+
+    @Headers({"Accept: application/json"})
+    @FormUrlEncoded
+    @POST("master")
+    Call<String> doCheckTokenFCM(@Field("TableName") String TableName, @Field("id") String id, @Header("Authorization") String authHeader, @Field("tokenFCM") String token);
 }

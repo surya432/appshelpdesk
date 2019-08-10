@@ -124,6 +124,7 @@
             android:background="@drawable/btnshape"
             android:padding="12dp"
             android:text="Login"
+            android:onClick="loginclick"
             android:textColor="#fff" />
 
         <TextView

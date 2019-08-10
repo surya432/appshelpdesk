@@ -8,43 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:161762104647:android:13c3c6a65bcbec53",
-        "android_client_info": {
-          "package_name": "com.example.myapplication"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "161762104647-beroc80uh7h5l4bsmg3qhf8q9jgotnrf.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.myapplication",
-            "certificate_hash": "6d151099e5063dd95a3023d9da58ea3af0566235"
-          }
-        },
-        {
-          "client_id": "161762104647-kjg7tu2iliv22489d0tbseli659jafhu.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBI03YyzfRqoPleafY_sRjL4l2SM1I9IFA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "161762104647-kjg7tu2iliv22489d0tbseli659jafhu.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:161762104647:android:ca9aef76c1f88b93",
         "android_client_info": {
           "package_name": "com.surya432.skripsi"

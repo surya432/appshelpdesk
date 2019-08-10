@@ -117,7 +117,7 @@ public class ListTiketActivity extends AppCompatActivity {
                 public void onFailure(Call<ModelListTiket> call, Throwable t) {
                     listItem.setVisibility(View.GONE);
                     handler.removeCallbacksAndMessages(null);
-                    ToolUtil.BuildAlertDialog(getApplicationContext(), t.getMessage());
+                    ToolUtil.BuildAlertDialog(ListTiketActivity.this, t.getMessage());
                 }
             });
 
